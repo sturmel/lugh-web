@@ -1,9 +1,11 @@
 <template>
-  <div class="w-full flex">
-    <NuxtParticles id="mainParticles" :options="options" class="opacity-50 -z-10" />
+  <div class="w-full flex flex-col items-center justify-center relative">
+    <NuxtLayout name="navigation" />
+    <NuxtParticles id="mainParticles" :options="options" class="opacity-30 -z-10" />
     <div class="w-full max-w-[1400px] m-auto mt-0 z-10 flex flex-col items-center justify-center">
       <slot />
     </div>
+    <NuxtLayout name="footer" />
   </div>
 </template>
 
@@ -42,7 +44,7 @@ const options =
         quantity: 4
       },
       repulse: {
-        distance: 150,
+        distance: 100,
         duration: 0.4
       }
     }
@@ -64,7 +66,7 @@ const options =
         enable: true,
         value_area: 800
       },
-      value: 150
+      value: 200
     },
     links: {
       color: '#000',

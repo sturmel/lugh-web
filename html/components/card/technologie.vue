@@ -1,17 +1,14 @@
 <template>
-    <div class="relative card__service w-80 h-96 bg-white border-2 rounded-xl scale-95" ref="card">
-        <div class="backface-hidden w-full h-full  p-4 flex flex-col items-center justify-center rounded-xl">
-            <img :src="imageUrl" alt="Lugh Web Logo"
-                class="m-auto absolute scale-95 h-48 -top-[5rem] -right-[6rem] object-cover drop-shadow-[0rem_0rem_0.15rem_rgba(0,0,0,0.15)]"
-                ref="img" />
+    <div class="group relative card__service w-72 h-80 bg-white border-2 rounded-xl" ref="card">
+        <div class="backface-hidden w-full h-full p-4 flex flex-col items-center justify-center rounded-xl">
+            <div
+                class="w-24 h-24 p-2 absolute shadow-[0_0_1rem_rgba(46,204,113,0.5)] rounded-xl transition-all duration-300 m-auto group-hover:-top-[3rem] -top-[2rem] -right-[2rem] bg-white border-2 border-emerald-500 flex items-center justify-center">
+                <img :src="imageUrl" :alt="imageAlt" class="m-auto object-cover" ref="img" />
+            </div>
             <h3
-                class="text-2xl m-auto mt-0 mb-0 ml-0 font-semibold text-tangerine-500 uppercase text-shadow-white  h-16 z-10">
+                class="text-2xl m-auto mt-0 mb-0 ml-0 font-semibold text-tangerine-500 uppercase text-shadow-white h-16 z-10">
                 {{ title }}</h3>
             <p class="text-xl m-auto mt-3 z-10"> {{ text }}</p>
-            <ButtonsBlueRedirect text="En savoir plus" href="/services"
-                class="card__service__button  scale-95 m-auto ml-0 mb-0 z-10 drop-shadow-[0rem_0rem_0.25rem_rgba(0,0,0,0.25)]"
-                ref="button" />
-
         </div>
     </div>
 </template>
@@ -19,7 +16,6 @@
 <script setup lang="ts">
 import { hexToRgb } from '@/composables/misc'
 import gsap from 'gsap';
-import { ref, onMounted } from 'vue';
 
 const props = defineProps({
     title: {
@@ -38,9 +34,15 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    imageAlt: {
+        type: String,
+        required: true,
+    },
 });
 
 const card = ref<HTMLElement | null>(null);
+const img = ref<HTMLImageElement | null>(null);
+const button = ref<HTMLButtonElement | null>(null);
 
 const setColor = () => {
     if (!card.value) return;

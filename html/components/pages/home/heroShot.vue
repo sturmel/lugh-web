@@ -1,20 +1,19 @@
 <template>
-    <section class="relative heroshot w-full min-h-screen flex flex-wrap m-auto mt-0 perspective-[1000px]">
+    <section class="relative heroshot w-full min-h-screen flex flex-wrap m-auto mt-0 perspective-[1000px]"
+        @mousemove="imageCardInteraction" ref="heroShotSection">
 
         <div class="flex flex-col items-center justify-center w-1/2 h-full m-auto ml-0 z-20 ">
             <div class="flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
-                <h2
+                <h3
                     class="heroshot__title text-transparent text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
-                    Digitalisez votre succès :</h2>
-                <h2
-                    class="heroshot__bottomline text-transparent text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
-                    Sites web & Applications mobiles sur mesure</h2>
+                    Digitalisez votre succès :</h3>
                 <h1
+                    class="heroshot__bottomline text-transparent text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    Sites web, applications mobiles & outils métiers sur mesure</h1>
+                <h2
                     class="heroshot__subtitle text-transparent text-2xl m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
-                    Développement de sites internet, applications mobiles et d'outils métiers. Boostez votre
-                    productivité et
-                    atteignez vos objectifs avec des solutions personnalisées.</h1>
-            </div>   
+                    Développons ensemble votre présence en ligne, vos outils de productivité, sécurisons votre infrastructure et automatisons vos processus.</h2>
+            </div>
             <div class="heroshot__buttons flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
                 <ButtonsBlueRedirect text="Découvrez mes services" href="/services"
                     class="m-auto ml-0 mr-5 -translate-y-full opacity-0" />
@@ -24,69 +23,61 @@
         </div>
 
         <div class="heroshot__image scale-95 opacity-0 flex  absolute h-2/3 max-w-1/2  rounded-2xl bg-egyptian-blue-500 m-auto top-0 bottom-0 right-5"
-            @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+            @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
             <img src="/images/pages/home/heroshot.webp" alt="Lugh Web Logo"
-                class="character m-auto h-full object-cover opacity-0 scale-95" />
+                class="character m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
         </div>
 
     </section>
 </template>
 
 <script setup lang="ts">
-import { gsap } from 'gsap'
-import { animateText } from '~/composables/animations'
+import { showTextSpanEl, hideTextSpanEl } from '~/composables/animations';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Position {
     height: number;
     width: number;
 }
 
-const props = defineProps({
-    visible: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
-});
-
 const isHovered = ref(false);
+const heroShotSection = ref<HTMLElement | null>(null);
+const imageContainer = ref<HTMLElement | null>(null);
+const imageCharacter = ref<HTMLImageElement | null>(null);
 
 const imageCardInteraction = (mouseEvent: MouseEvent) => {
-    if (!isHovered.value) return;
+    if (!isHovered.value || !imageContainer.value || !imageCharacter.value) return;
 
-    const imageContainer = document.querySelector(".heroshot__image") as HTMLElement;
-    const imageCharacter = document.querySelector(".heroshot__image img.character") as HTMLImageElement;
+    const position: Position = {
+        height: imageContainer.value.offsetHeight,
+        width: imageContainer.value.offsetWidth,
+    };
 
-    if (imageContainer && imageCharacter) {
-        const position: Position = {
-            height: imageContainer.offsetHeight,
-            width: imageContainer.offsetWidth,
-        };
+    const centerX = position.width / 2;
+    const centerY = position.height / 2;
 
-        const centerX = position.width / 2;
-        const centerY = position.height / 2;
+    const x = (mouseEvent.offsetX - centerX) / centerX;
+    const y = (mouseEvent.offsetY - centerY) / centerY;
 
-        const x = (mouseEvent.offsetX - centerX) / centerX;
-        const y = (mouseEvent.offsetY - centerY) / centerY;
-
-        gsap.to(imageContainer, {
-            duration: 0.5,
-            rotateY: `${x * 15}deg`,
-            rotateX: `${y * 15 * -1}deg`,
-            transform: `translateZ(${y * 2}rem)`,
-            boxShadow: `${x * -5 }rem ${y * -5}rem 2rem rgba(0, 0, 0, 0.25), ${x * 5}rem ${y * 5}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.2) inset`,
-        });
-        gsap.to(imageCharacter, {
-            duration: 0.5,
-            rotateY: `${x * 15}deg`,
-            rotateX: `${y * 15 * -1}deg`,
-            translateZ: y * 2 + 'rem',
-            translateY: `${y * 5}rem`,
-            translateX: `${x * 5}rem`,
-            filter: `drop-shadow(${x * 2}rem ${y * 2}rem 3rem rgba(0, 0, 0, 0.5))`,
-
-        });
-    }
+    gsap.to(imageContainer.value, {
+        duration: 0.5,
+        rotateY: `${x * 15}deg`,
+        rotateX: `${y * 15 * -1}deg`,
+        transform: `translateZ(${y * 2}rem)`,
+        boxShadow: `${x * -5}rem ${y * -5}rem 2rem rgba(0, 0, 0, 0.25), ${x * 5}rem ${y * 5}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.2) inset`,
+    });
+    gsap.to(imageCharacter.value, {
+        duration: 0.5,
+        rotateY: `${x * 15}deg`,
+        rotateX: `${y * 15 * -1}deg`,
+        translateZ: y * 2 + 'rem',
+        translateY: `${y * 5}rem`,
+        translateX: `${x * 5}rem`,
+        filter: `drop-shadow(${x * 2}rem ${y * 2}rem 3rem rgba(0, 0, 0, 0.5))`,
+    });
 };
 
 const onMouseEnter = () => {
@@ -96,16 +87,16 @@ const onMouseEnter = () => {
 const onMouseLeave = () => {
     isHovered.value = false;
 
-    const imageContainer = document.querySelector(".heroshot__image");
-    const imageCharacter = document.querySelector(".heroshot__image img.character");
-    gsap.to(imageContainer, {
+    if (!imageContainer.value || !imageCharacter.value) return;
+
+    gsap.to(imageContainer.value, {
         duration: 0.5,
         rotateY: `-10deg`,
         rotateX: `0deg`,
         transform: `translateZ(0)`,
         boxShadow: `1rem 1rem 2rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
-    gsap.to(imageCharacter, {
+    gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: `-10deg`,
         rotateX: `0deg`,
@@ -117,9 +108,10 @@ const onMouseLeave = () => {
 };
 
 const imageCardAndButtonAppear = () => {
-    const imageContainer = document.querySelector(".heroshot__image");
-    const buttons = document.querySelectorAll(".heroshot__buttons");
-    const imageCharacter = document.querySelector(".heroshot__image img.character");
+    if (!imageContainer.value || !heroShotSection.value) return;
+
+    const buttons = heroShotSection.value.querySelectorAll(".heroshot__buttons");
+    const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
 
     buttons[0].querySelectorAll("a").forEach((button: HTMLAnchorElement, index: number) => {
         gsap.to(button, {
@@ -131,7 +123,7 @@ const imageCardAndButtonAppear = () => {
         });
     });
 
-    gsap.to(imageContainer, {
+    gsap.to(imageContainer.value, {
         duration: 0.5,
         opacity: 1,
         ease: "power1.inOut",
@@ -148,14 +140,16 @@ const imageCardAndButtonAppear = () => {
                         translateZ: '2rem',
                         translateY: '-1rem',
                         translateX: '-1rem',
+                        scale: 1,
                         filter: `drop-shadow(2rem 2rem 3rem rgba(0, 0, 0, 0.5))`,
                     });
-                    gsap.to(imageContainer, {
+                    gsap.to(imageContainer.value, {
                         duration: 0.5,
                         rotateY: `-10deg`,
                         rotateX: `0deg`,
+                        scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: `-4rem -4rem 2rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+                        boxShadow: `4rem 4rem 2rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
                     });
                 },
             });
@@ -163,13 +157,16 @@ const imageCardAndButtonAppear = () => {
     });
 };
 
-const resetVisibility = () => {
-    const imageContainer = document.querySelector(".heroshot__image");
-    const imageCharacter = document.querySelector(".heroshot__image img.character");
-    const buttons = document.querySelectorAll(".heroshot__buttons");
-    const title = document.querySelector(".heroshot__title");
-    const bottomline = document.querySelector(".heroshot__bottomline");
-    const subtitle = document.querySelector(".heroshot__subtitle");
+const imageCardAndButtonHide = () => {
+    if (!heroShotSection.value) return;
+
+    const imageContainer = heroShotSection.value.querySelector(".heroshot__image");
+    const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
+    const buttons = heroShotSection.value.querySelectorAll(".heroshot__buttons");
+    const title = heroShotSection.value.querySelector(".heroshot__title");
+    const bottomline = heroShotSection.value.querySelector(".heroshot__bottomline");
+    const subtitle = heroShotSection.value.querySelector(".heroshot__subtitle");
+
     gsap.to(title, {
         duration: 0.5,
         color: "transparent",
@@ -189,6 +186,7 @@ const resetVisibility = () => {
         translateZ: '0rem',
         translateY: '0rem',
         translateX: '0rem',
+        scale: 0.95,
         opacity: 0,
         filter: `drop-shadow(0rem 0rem 0rem rgba(0, 0, 0, 0))`,
     });
@@ -196,6 +194,7 @@ const resetVisibility = () => {
         duration: 0.5,
         rotateY: `0deg`,
         rotateX: `0deg`,
+        scale: 0.95,
         transform: `translateZ(0)`,
         boxShadow: `0rem 0rem 0rem rgba(0, 0, 0, 0), 0rem 0rem 0rem rgba(255, 255, 255, 0) inset, 0rem 0rem 0rem rgba(0, 0, 0, 0) inset`,
     });
@@ -208,31 +207,53 @@ const resetVisibility = () => {
             delay: 0.5 + index * 0.5,
         });
     });
+};
 
+const sectionVisibilityTrigger = () => {
+    if (!heroShotSection.value) return;
+
+    const title = heroShotSection.value.querySelector(".heroshot__title");
+    const bottomline = heroShotSection.value.querySelector(".heroshot__bottomline");
+    const subtitle = heroShotSection.value.querySelector(".heroshot__subtitle");
+
+    ScrollTrigger.create({
+        trigger: heroShotSection.value,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+            imageCardAndButtonAppear();
+            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
+            showTextSpanEl(bottomline as HTMLElement, 0.5, "#0a369d", "#0a369d");
+            showTextSpanEl(subtitle as HTMLElement, 1, "#f58a07", "#f58a07");
+        },
+        onLeave: () => {
+            imageCardAndButtonHide();
+            hideTextSpanEl(title as HTMLElement);
+            hideTextSpanEl(bottomline as HTMLElement);
+            hideTextSpanEl(subtitle as HTMLElement);
+        },
+        onEnterBack: () => {
+            imageCardAndButtonAppear();
+            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
+            showTextSpanEl(bottomline as HTMLElement, 0.5, "#0a369d", "#0a369d");
+            showTextSpanEl(subtitle as HTMLElement, 1, "#f58a07", "#f58a07");
+        },
+        onLeaveBack: () => {
+            imageCardAndButtonHide();
+            hideTextSpanEl(title as HTMLElement);
+            hideTextSpanEl(bottomline as HTMLElement);
+            hideTextSpanEl(subtitle as HTMLElement);
+        },
+
+    });
 };
 
 onMounted(() => {
     window.addEventListener("mousemove", imageCardInteraction);
+    sectionVisibilityTrigger();
 });
 
 onBeforeUnmount(() => {
     window.removeEventListener("mousemove", imageCardInteraction);
 });
-
-watch(
-    () => props.visible,
-    (newValue) => {
-        if (newValue == true) {
-            imageCardAndButtonAppear();
-            const el = document.querySelector('.heroshot');
-            if (el instanceof HTMLElement) {
-                animateText(el, ".heroshot__title", 0, "#0a369d", "#0a369d");
-                animateText(el, ".heroshot__bottomline", 1, "#0a369d", "#0a369d");
-                animateText(el, ".heroshot__subtitle", 2, "#f58a07", "#f58a07");
-            }
-        } else {
-            resetVisibility();
-        }
-    }
-);
 </script>

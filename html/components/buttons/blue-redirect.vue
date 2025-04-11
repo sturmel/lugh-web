@@ -6,28 +6,17 @@
     </a>
 </template>
 
-<script lang="ts">
-export default {
-    props: {
-        text: {
-            type: String,
-            required: true,
-            default: "test",
-        },
-        href: {
-            type: String,
-            required: true,
-            default: "/",
-        }
+<script setup lang="ts">
+defineProps({
+    text: {
+        type: String,
+        required: true,
+        default: "test",
     },
-    methods: {
-
-    },
-    mounted() {
-
-    },
-    watch: {
-
-    },
-}
+    href: {
+        type: String,
+        required: true,
+        default: "/",
+    }
+});
 </script>
