@@ -192,10 +192,10 @@ const cardAndTextVisibilityTrigger = () => {
             start: 'top 80%',
             end: 'bottom 20%',
             onEnter: () => {
-                showTextSpanEl(subtitle as HTMLElement, 0, "#f58a07", "#f58a07");
+                showTextSpanEl(subtitle as HTMLElement, 0.5, "#f58a07", "#f58a07");
             },
             onEnterBack: () => {
-                showTextSpanEl(subtitle as HTMLElement, 0, "#f58a07", "#f58a07");
+                showTextSpanEl(subtitle as HTMLElement, 0.5, "#f58a07", "#f58a07");
             },
             onLeave: () => {
                 hideTextSpanEl(subtitle as HTMLElement);
@@ -212,10 +212,10 @@ const cardAndTextVisibilityTrigger = () => {
             start: 'top 80%',
             end: 'bottom 20%',
             onEnter: () => {
-                showTextSpanEl(description as HTMLElement, 0, "#000000", "#bbb5bd");
+                showTextSpanEl(description as HTMLElement, 1, "#000000", "#bbb5bd");
             },
             onEnterBack: () => {
-                showTextSpanEl(description as HTMLElement, 0, "#000000", "#bbb5bd");
+                showTextSpanEl(description as HTMLElement, 1, "#000000", "#bbb5bd");
             },
             onLeave: () => {
                 hideTextSpanEl(description as HTMLElement);

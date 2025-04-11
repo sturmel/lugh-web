@@ -68,12 +68,12 @@ const sectionVisibilityTrigger = () => {
             onEnter: () => {
                 showCardEl(card as HTMLElement);
                 showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-                showTextSpanEl(bottomline as HTMLElement, 0, "#f58a07", "#f58a07");
+                showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
             },
             onEnterBack: () => {
                 showCardEl(card as HTMLElement);
                 showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-                showTextSpanEl(bottomline as HTMLElement, 0, "#f58a07", "#f58a07");
+                showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
             },
             onLeave: () => {
                 hideCardEl(card as HTMLElement);

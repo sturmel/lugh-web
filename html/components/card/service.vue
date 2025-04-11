@@ -1,15 +1,15 @@
 <template>
-    <div class="relative card__service w-80 h-96 bg-white border-2 rounded-xl scale-95" ref="card">
+    <div class="relative card__service w-80 h-96 bg-white border-2 rounded-xl" ref="card">
         <div class="backface-hidden w-full h-full  p-4 flex flex-col items-center justify-center rounded-xl">
             <img :src="imageUrl" alt="Lugh Web Logo"
-                class="m-auto absolute scale-95 h-48 -top-[5rem] -right-[6rem] object-cover drop-shadow-[0rem_0rem_0.15rem_rgba(0,0,0,0.15)]"
+                class="m-auto absolute h-48 -top-[5rem] -right-[6rem] object-cover drop-shadow-[0rem_0rem_0.15rem_rgba(0,0,0,0.15)]"
                 ref="img" />
             <h3
                 class="text-2xl m-auto mt-0 mb-0 ml-0 font-semibold text-tangerine-500 uppercase text-shadow-white  h-16 z-10">
                 {{ title }}</h3>
             <p class="text-xl m-auto mt-3 z-10"> {{ text }}</p>
             <ButtonsBlueRedirect text="En savoir plus" href="/services"
-                class="card__service__button  scale-95 m-auto ml-0 mb-0 z-10 drop-shadow-[0rem_0rem_0.25rem_rgba(0,0,0,0.25)]"
+                class="card__service__button m-auto ml-0 mb-0 z-10 drop-shadow-[0rem_0rem_0.25rem_rgba(0,0,0,0.25)]"
                 ref="button" />
 
         </div>
