@@ -2,10 +2,10 @@
     <section class="services flex flex-col items-center justify-center w-full h-full" ref="servicesSection">
         <div class="flex flex-col items-center justify-center w-full h-full mb-14">
             <h2
-                class="services__title text-transparent text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="services__title text-egyptian-blue-500 blur-[15px] opacity-0 text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 Expertise digitale à votre service : innovons ensemble !</h2>
             <p
-                class="services__bottomline text-transparent text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="services__bottomline text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 Propulsez votre activité avec nos services digitaux et construisons votre succès en ligne.</p>
         </div>
         <div class="services__container flex flex-wrap max-w-[1300px] justify-center items-center">
@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { showTextSpanEl, hideTextSpanEl, showCardEl, hideCardEl } from '~/composables/animations';
+import { showBlurText, hideBlurText, showCardEl, hideCardEl } from '~/composables/animations';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
@@ -67,24 +67,24 @@ const sectionVisibilityTrigger = () => {
             end: 'bottom 20%',
             onEnter: () => {
                 showCardEl(card as HTMLElement);
-                showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-                showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
+                showBlurText(title as HTMLElement, 0);
+                showBlurText(bottomline as HTMLElement, 0.5);
             },
             onEnterBack: () => {
                 showCardEl(card as HTMLElement);
-                showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-                showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
+                showBlurText(title as HTMLElement, 0);
+                showBlurText(bottomline as HTMLElement, 0.5);
             },
             onLeave: () => {
                 hideCardEl(card as HTMLElement);
-                hideTextSpanEl(title as HTMLElement);
-                hideTextSpanEl(bottomline as HTMLElement);
-  
+                hideBlurText(title as HTMLElement, 0);
+                hideBlurText(bottomline as HTMLElement, 0.5);
+
             },
             onLeaveBack: () => {
                 hideCardEl(card as HTMLElement);
-                hideTextSpanEl(title as HTMLElement);
-                hideTextSpanEl(bottomline as HTMLElement);
+                hideBlurText(title as HTMLElement, 0);
+                hideBlurText(bottomline as HTMLElement, 0.5);
             }
         });
     });

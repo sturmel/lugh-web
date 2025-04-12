@@ -1,17 +1,33 @@
 <template>
   <div class="relative flex flex-col min-h-screen max-w-[100vw] overflow-hidden">
-    <NuxtLayout name="main">
-      <LazyPagesHomeHeroShot class="mb-10"/>
-      <LazyPagesHomeServices class="mt-20 mb-10"/>
-      <LazyPagesHomeAbout class="mt-20 mb-10" />
-      <LazyPagesHomeTechnologies class="mt-20 mb-10" />
-      <LazyPagesHomeContact class="mt-20 mb-10"/>
+    <NuxtLayout name="main" @scrollTo="scrollToSection">
+      <LazyPagesHomeHeroShot class="mb-10" @scrollTo="scrollToSection" />
+      <LazyPagesHomeServices class="mb-10" id="services"/>
+      <LazyPagesHomeAbout class="mb-10" @scrollTo="scrollToSection"/>
+      <LazyPagesHomeTechnologies class="mb-10" />
+      <LazyPagesHomeContact class="mb-10" id="contact" />
     </NuxtLayout>
   </div>
 </template>
 
-
 <script setup lang="ts">
+import gsap from 'gsap';
+import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
+
+const scrollToSection = (targetId: string) => {
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    let offsetTop = targetElement.offsetTop - 100;
+    gsap.to(window, {
+      duration: 2,
+      scrollTo: { y: offsetTop, autoKill: false }, 
+      ease: "power2.inOut"
+    });
+  }
+};
+
 onMounted(() => {
   window.scrollTo(0, 0);
 });

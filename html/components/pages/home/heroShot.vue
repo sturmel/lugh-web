@@ -3,22 +3,22 @@
         @mousemove="imageCardInteraction" ref="heroShotSection">
 
         <div class="flex flex-col items-center justify-center w-1/2 h-full m-auto ml-0 z-20 ">
-            <div class="flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
+            <div class="relative flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
                 <h3
-                    class="heroshot__title text-transparent text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    class="heroshot__title text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                     Digitalisez votre succès :</h3>
                 <h1
-                    class="heroshot__bottomline text-transparent text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    class="heroshot__bottomline text-4xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                     Sites web, applications mobiles & outils métiers sur mesure</h1>
                 <h2
-                    class="heroshot__subtitle text-transparent text-2xl m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
+                    class="heroshot__subtitle text-2xl text-tangerine-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
                     Développons ensemble votre présence en ligne, vos outils de productivité, sécurisons votre infrastructure et automatisons vos processus.</h2>
             </div>
-            <div class="heroshot__buttons flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
-                <ButtonsBlueRedirect text="Découvrez mes services" href="/services"
-                    class="m-auto ml-0 mr-5 -translate-y-full opacity-0" />
-                <ButtonsOrangeRedirect text="Contactez-moi" href="/contact"
-                    class="m-auto ml-0 -translate-y-full opacity-0" />
+            <div class="flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
+                <ButtonsBlue text="Découvrez mes services" @click="$emit('scrollTo', 'services')"
+                    class="heroshot__button m-auto ml-0 mr-5 -translate-y-full opacity-0" />
+                <ButtonsOrange text="Me contacter" @click="$emit('scrollTo', 'contact')"
+                    class="heroshot__button m-auto ml-0 -translate-y-full opacity-0" />
             </div>
         </div>
 
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { showTextSpanEl, hideTextSpanEl } from '~/composables/animations';
+import { showBlurText, hideBlurText } from '~/composables/animations';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
@@ -42,6 +42,8 @@ interface Position {
     height: number;
     width: number;
 }
+
+const emit = defineEmits(['scrollTo']);
 
 const isHovered = ref(false);
 const heroShotSection = ref<HTMLElement | null>(null);
@@ -110,10 +112,10 @@ const onMouseLeave = () => {
 const imageCardAndButtonAppear = () => {
     if (!imageContainer.value || !heroShotSection.value) return;
 
-    const buttons = heroShotSection.value.querySelectorAll(".heroshot__buttons");
+    const buttons = heroShotSection.value.querySelectorAll(".heroshot__button");
     const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
 
-    buttons[0].querySelectorAll("a").forEach((button: HTMLAnchorElement, index: number) => {
+    buttons.forEach((button, index: number) => {  
         gsap.to(button, {
             duration: 0.5,
             opacity: 1,
@@ -162,23 +164,8 @@ const imageCardAndButtonHide = () => {
 
     const imageContainer = heroShotSection.value.querySelector(".heroshot__image");
     const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
-    const buttons = heroShotSection.value.querySelectorAll(".heroshot__buttons");
-    const title = heroShotSection.value.querySelector(".heroshot__title");
-    const bottomline = heroShotSection.value.querySelector(".heroshot__bottomline");
-    const subtitle = heroShotSection.value.querySelector(".heroshot__subtitle");
+    const buttons = heroShotSection.value.querySelectorAll(".heroshot__button");
 
-    gsap.to(title, {
-        duration: 0.5,
-        color: "transparent",
-    });
-    gsap.to(bottomline, {
-        duration: 0.5,
-        color: "transparent",
-    });
-    gsap.to(subtitle, {
-        duration: 0.5,
-        color: "transparent",
-    });
     gsap.to(imageCharacter, {
         duration: 0.5,
         rotateY: `0deg`,
@@ -198,7 +185,7 @@ const imageCardAndButtonHide = () => {
         transform: `translateZ(0)`,
         boxShadow: `0rem 0rem 0rem rgba(0, 0, 0, 0), 0rem 0rem 0rem rgba(255, 255, 255, 0) inset, 0rem 0rem 0rem rgba(0, 0, 0, 0) inset`,
     });
-    buttons[0].querySelectorAll("a").forEach((button: HTMLAnchorElement, index: number) => {
+    buttons.forEach((button, index: number) => {  
         gsap.to(button, {
             duration: 0.5,
             opacity: 0,
@@ -222,27 +209,27 @@ const sectionVisibilityTrigger = () => {
         end: 'bottom 20%',
         onEnter: () => {
             imageCardAndButtonAppear();
-            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-            showTextSpanEl(bottomline as HTMLElement, 0.5, "#0a369d", "#0a369d");
-            showTextSpanEl(subtitle as HTMLElement, 1, "#f58a07", "#f58a07");
+            showBlurText(title as HTMLElement, 0);
+            showBlurText(bottomline as HTMLElement, 0.5);
+            showBlurText(subtitle as HTMLElement, 1);
         },
         onLeave: () => {
             imageCardAndButtonHide();
-            hideTextSpanEl(title as HTMLElement);
-            hideTextSpanEl(bottomline as HTMLElement);
-            hideTextSpanEl(subtitle as HTMLElement);
+            hideBlurText(title as HTMLElement, 1);
+            hideBlurText(bottomline as HTMLElement, 0.5);
+            hideBlurText(subtitle as HTMLElement, 0);
         },
         onEnterBack: () => {
             imageCardAndButtonAppear();
-            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-            showTextSpanEl(bottomline as HTMLElement, 0.5, "#0a369d", "#0a369d");
-            showTextSpanEl(subtitle as HTMLElement, 1, "#f58a07", "#f58a07");
+            showBlurText(title as HTMLElement, 0);
+            showBlurText(bottomline as HTMLElement, 0.5);
+            showBlurText(subtitle as HTMLElement, 1);
         },
         onLeaveBack: () => {
             imageCardAndButtonHide();
-            hideTextSpanEl(title as HTMLElement);
-            hideTextSpanEl(bottomline as HTMLElement);
-            hideTextSpanEl(subtitle as HTMLElement);
+            hideBlurText(title as HTMLElement, 1);
+            hideBlurText(bottomline as HTMLElement, 0.5);
+            hideBlurText(subtitle as HTMLElement, 0);
         },
 
     });

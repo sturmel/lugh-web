@@ -2,14 +2,14 @@
     <section class="relative contact w-full flex flex-wrap m-auto mt-0 perspective-[1000px]" ref="contactSection">
         <div class="flex flex-col w-1/2 m-auto ml-0  mb-5 pointer-events-none">
             <h2
-                class="contact__title text-transparent text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="contact__title text-egyptian-blue-500 blur-[15px] opacity-0 text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 Discutons de vos ambitions digitales :</h2>
             <h2
-                class="contact__bottomline text-transparent text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="contact__bottomline text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 Prêt à donner vie à votre projet web, application, outil métier, ou à optimiser votre sécurité et
                 vos processus d'automatisation ?</h2>
             <p
-                class="contact__subtitle text-transparent text-xl m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
+                class="contact__subtitle text-black blur-[15px] opacity-0 text-xl m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
                 Vous avez une idée brillante pour un site web innovant, une application mobile intuitive, un outil
                 métier sur mesure pour booster votre productivité, ou vous souhaitez renforcer la sécurité de votre
                 infrastructure digitale et automatiser des tâches chronophages ? Partagez-moi les détails de votre
@@ -19,30 +19,30 @@
                 niveau supérieur.</p>
         </div>
 
-        <div
-            class="contact__form flex flex-col items-center  justify-center min-w-[40rem] max-w-1/2  rounded-2xl">
+        <div class="contact__form opacity-0 flex flex-col items-center  justify-center min-w-[40rem] max-w-1/2  rounded-2xl">
 
             <form class="flex flex-col items-center justify-center w-full m-auto " @submit.prevent="sendMail">
                 <input type="text" placeholder="Nom et prénom"
-                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white"
+                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
                     v-model="name" />
                 <input type="email" placeholder="Email"
-                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white"
+                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
                     v-model="email" />
                 <input type="text" placeholder="Téléphone"
-                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white"
+                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
                     v-model="phone" />
                 <textarea placeholder="Message"
-                    class="contact__form__textarea min-h-48 text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white"
+                    class="contact__form__textarea min-h-48 text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
                     v-model="message" />
-                <LazyButtonsBlue text="Envoyer votre message" class="m-auto mt-5 !shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)]" />
+                <LazyButtonsBlue text="Envoyer votre message"
+                    class="m-auto mt-5 !shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)]" />
             </form>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { showTextSpanEl, hideTextSpanEl } from '~/composables/animations';
+import { showBlurText, hideBlurText, showCardEl, hideCardEl } from '~/composables/animations';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { ref, onMounted } from 'vue';
@@ -51,7 +51,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const contactSection = ref<HTMLElement | null>(null);
 
-// Définition des variables avec ref
 const name = ref('');
 const email = ref('');
 const phone = ref('');
@@ -62,44 +61,82 @@ const sectionVisibilityTrigger = () => {
     const title = contactSection.value.querySelector(".contact__title");
     const bottomline = contactSection.value.querySelector(".contact__bottomline");
     const subtitle = contactSection.value.querySelector(".contact__subtitle");
+    const form = contactSection.value.querySelector(".contact__form");
 
     ScrollTrigger.create({
         trigger: contactSection.value,
         start: 'top 80%',
         end: 'bottom 20%',
         onEnter: () => {
-            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-            showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
-            showTextSpanEl(subtitle as HTMLElement, 1, "#000000", "#bbb5bd");
+            showBlurText(title as HTMLElement, 0);
+            showBlurText(bottomline as HTMLElement, 0.5);
+            showBlurText(subtitle as HTMLElement, 1);
+            showCardEl(form as HTMLElement);
         },
         onLeave: () => {
-            hideTextSpanEl(title as HTMLElement);
-            hideTextSpanEl(bottomline as HTMLElement);
-            hideTextSpanEl(subtitle as HTMLElement);
+            hideBlurText(title as HTMLElement, 0);
+            hideBlurText(bottomline as HTMLElement, 0.5);
+            hideBlurText(subtitle as HTMLElement, 1);
+            hideCardEl(form as HTMLElement);
         },
         onEnterBack: () => {
-            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-            showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
-            showTextSpanEl(subtitle as HTMLElement, 1, "#000000", "#bbb5bd");
+            showBlurText(title as HTMLElement, 0);
+            showBlurText(bottomline as HTMLElement, 0.5);
+            showBlurText(subtitle as HTMLElement, 1);
+            showCardEl(form as HTMLElement);
         },
         onLeaveBack: () => {
-            hideTextSpanEl(title as HTMLElement);
-            hideTextSpanEl(bottomline as HTMLElement);
-            hideTextSpanEl(subtitle as HTMLElement);
+            hideBlurText(title as HTMLElement, 0);
+            hideBlurText(bottomline as HTMLElement, 0.5);
+            hideBlurText(subtitle as HTMLElement, 1);
+            hideCardEl(form as HTMLElement);
         },
     });
 };
 
-const sendMail = () => {
-    // Logic to send email
-    console.log("Name:", name.value);
-    console.log("Email:", email.value);
-    console.log("Phone:", phone.value);
-    console.log("Message:", message.value);
-    // Add your email sending logic here, using the values from name.value, email.value, etc.
+const sendMail = async () => {
+    try {
+        const emailData = {
+            name: name.value,
+            email: email.value,
+            phone: phone.value,
+            message: message.value,
+        };
+
+        const response = await fetch('/api/send_email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailData),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Email sent successfully:', data);
+
+
+        name.value = '';
+        email.value = '';
+        phone.value = '';
+        message.value = '';
+
+    } catch (error: any) {
+        console.error('Error sending email:', error.message);
+
+    }
 };
 
 onMounted(() => {
     sectionVisibilityTrigger();
+    gsap.set(".contact__form", {
+            opacity: 0,
+            translateY: "25%",
+            scale: 1.05,
+        });
 });
 </script>

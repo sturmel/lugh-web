@@ -110,3 +110,26 @@ export function hideCardEl(el: HTMLElement): void {
     ease: 'power2.inOut',
   });
 }
+
+export function showBlurText(el: HTMLElement,
+  delay: number = 0,
+) {
+  gsap.to(el, {
+    filter: 'blur(0px)',
+    opacity: 1,
+    duration: 0.5,
+    ease: 'power2.inOut',
+    delay: delay,
+  })
+}
+
+export function hideBlurText(el: HTMLElement,
+  delay: number = 0,) {
+  gsap.to(el, {
+    filter: 'blur(15px)',
+    opacity: 0,
+    duration: 0.5,
+    ease: 'power2.inOut',
+    delay: delay,
+  })
+}

@@ -2,11 +2,11 @@
     <section class="relative flex flex-wrap about perspective-[1000px]" @mousemove="imageCardInteraction"
         ref="aboutSection">
         <h2
-            class="about__title w-full text-transparent text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+            class="about__title w-full text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
             Un parcours unique au service de vos projets.
         </h2>
         <p
-            class="about__bottomline w-full text-transparent text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
+            class="about__bottomline w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             Une expertise complète et une approche globale pour la réussite durable de vos projets numériques.</p>
         <div class="about__image scale-95 opacity-0 flex h-1/2 max-w-1/3  rounded-2xl bg-emerald-500 m-auto top-0 bottom-0 right-5"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
@@ -41,14 +41,14 @@
                     succès
                     de vos projets digitaux.
                 </p>
-                <p class="text-xl mb-10 opacity-0 scale-105">Prêt à discuter de votre projet ? Contactez-moi pour
+                <p class="text-xl mb-10 opacity-0 scale-105">Prêt à discuter de votre projet ? Me contacter pour
                     explorer comment mon
                     expertise peut faire la
                     différence.</p>
             </div>
-            <div class="about__buttons flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
-                <ButtonsOrange text="Contactez-moi" @click="emit('scrollTo', 'contact')"
-                    class="m-auto ml-0 -translate-y-full opacity-0" />
+            <div class="flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
+                <ButtonsOrange text="Me contacter" @click="emit('scrollTo', 'contact')"
+                    class="about__button m-auto ml-0 -translate-y-full opacity-0" />
             </div>
         </div>
 
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { showTextSpanEl, hideTextSpanEl } from '~/composables/animations';
+import { showBlurText, hideBlurText } from '~/composables/animations';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
@@ -138,19 +138,16 @@ const onMouseLeave = () => {
 const imageCardAndButtonAndTextAppear = () => {
     if (!aboutSection.value || !imageContainer.value) return;
 
-    const buttons = aboutSection.value.querySelector(".about__buttons");
+    const button = aboutSection.value.querySelector(".about__button");
     const imageCharacter = aboutSection.value.querySelector(".about__image img");
     const textContent = aboutSection.value.querySelector(".about__container__content__text");
 
-    if (!buttons) return;
-    buttons.querySelectorAll("a").forEach((button: HTMLAnchorElement, index: number) => {
-        gsap.to(button, {
-            duration: 0.5,
-            opacity: 1,
-            translateY: 0,
-            ease: "power1.easeInOut",
-            delay: 0.5 + index * 0.5,
-        });
+    gsap.to(button, {
+        duration: 0.5,
+        opacity: 1,
+        translateY: 0,
+        ease: "power1.easeInOut",
+        delay: 0.5,
     });
 
     gsap.to(imageContainer.value, {
@@ -207,19 +204,9 @@ const imageCardAndButtonAndTextHide = () => {
 
     const imageContainer = aboutSection.value.querySelector(".about__image");
     const imageCharacter = aboutSection.value.querySelector(".about__image img");
-    const buttons = aboutSection.value.querySelector(".about__buttons");
-    const title = aboutSection.value.querySelector(".about__title");
-    const bottomline = aboutSection.value.querySelector(".about__bottomline");
+    const button = aboutSection.value.querySelector(".about__button");
     const textContent = aboutSection.value.querySelector(".about__container__content__text");
 
-    gsap.to(title, {
-        duration: 0.5,
-        color: "transparent",
-    });
-    gsap.to(bottomline, {
-        duration: 0.5,
-        color: "transparent",
-    });
     gsap.to(imageCharacter, {
         duration: 0.5,
         rotateY: `0deg`,
@@ -253,15 +240,12 @@ const imageCardAndButtonAndTextHide = () => {
         });
     });
 
-    if (!buttons) return;
-    buttons.querySelectorAll("a").forEach((button: HTMLAnchorElement, index: number) => {
-        gsap.to(button, {
-            duration: 0.5,
-            opacity: 0,
-            translateY: "-1rem",
-            ease: "power1.easeInOut",
-            delay: 0.5 + index * 0.5,
-        });
+    gsap.to(button, {
+        duration: 0.5,
+        opacity: 0,
+        translateY: "-1rem",
+        ease: "power1.easeInOut",
+        delay: 0.5,
     });
 
 };
@@ -277,25 +261,23 @@ const sectionVisibilityTrigger = () => {
         end: 'bottom 20%',
         onEnter: () => {
             imageCardAndButtonAndTextAppear();
-            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-            showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
+            showBlurText(title as HTMLElement, 0);
+            showBlurText(bottomline as HTMLElement, 0.5);
         },
         onLeave: () => {
             imageCardAndButtonAndTextHide();
-            hideTextSpanEl(title as HTMLElement);
-            hideTextSpanEl(bottomline as HTMLElement);
-      
+            hideBlurText(title as HTMLElement, 0);
+            hideBlurText(bottomline as HTMLElement, 0.5);
         },
         onEnterBack: () => {
             imageCardAndButtonAndTextAppear();
-            showTextSpanEl(title as HTMLElement, 0, "#0a369d", "#0a369d");
-            showTextSpanEl(bottomline as HTMLElement, 0.5, "#f58a07", "#f58a07");
-
+            showBlurText(title as HTMLElement, 0);
+            showBlurText(bottomline as HTMLElement, 0.5);
         },
         onLeaveBack: () => {
             imageCardAndButtonAndTextHide();
-            hideTextSpanEl(title as HTMLElement);
-            hideTextSpanEl(bottomline as HTMLElement);
+            hideBlurText(title as HTMLElement, 0);
+            hideBlurText(bottomline as HTMLElement, 0.5);
         },
     });
 

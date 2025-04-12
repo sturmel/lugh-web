@@ -1,9 +1,9 @@
 <template>
   <div class="w-full flex flex-col items-center justify-center relative">
-    <NuxtLayout name="navigation" />
+    <NuxtLayout name="navigation" @scrollTo="handleScrollTo"/>
     <NuxtParticles id="mainParticles" :options="options" class="opacity-30 -z-10" />
     <div class="w-full max-w-[1400px] m-auto mt-0 z-10 flex flex-col items-center justify-center">
-      <slot />
+      <slot :scrollTo="handleScrollTo"/>
     </div>
     <NuxtLayout name="footer" />
   </div>
@@ -80,5 +80,11 @@ const options =
     },
   }
 }
+
+const emit = defineEmits(['scrollTo']);
+
+const handleScrollTo = (targetId: string) => {
+  emit('scrollTo', targetId);
+};
 
 </script>
