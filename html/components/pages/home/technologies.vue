@@ -2,7 +2,7 @@
     <section class="technologies flex flex-col items-center justify-center w-full h-full perspective-[1000px]"
         ref="technologiesSection">
         <h2
-            class="technologies__title text-egyptian-blue-500 blur-[15px] opacity-0 w-full text-6xl m-auto ml-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
+            class="technologies__title text-egyptian-blue-500 blur-[15px] opacity-0 w-full text-5xl lg:text-6xl m-auto ml-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             Un arsenal de technologies au service de vos ambitions digitales.
         </h2>
         <div class="flex flex-col items-center justify-center w-full h-full mb-14">

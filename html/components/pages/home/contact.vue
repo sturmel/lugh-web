@@ -1,8 +1,8 @@
 <template>
     <section class="relative contact w-full flex flex-wrap m-auto mt-0 perspective-[1000px]" ref="contactSection">
-        <div class="flex flex-col w-1/2 m-auto ml-0  mb-5 pointer-events-none">
+        <div class="flex flex-col w-full lg:w-1/2 m-auto ml-0  mb-5 pointer-events-none">
             <h2
-                class="contact__title text-egyptian-blue-500 blur-[15px] opacity-0 text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="contact__title text-egyptian-blue-500 blur-[15px] opacity-0 text-5xl lg:text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 Discutons de vos ambitions digitales :</h2>
             <h2
                 class="contact__bottomline text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
@@ -13,13 +13,10 @@
                 Vous avez une idée brillante pour un site web innovant, une application mobile intuitive, un outil
                 métier sur mesure pour booster votre productivité, ou vous souhaitez renforcer la sécurité de votre
                 infrastructure digitale et automatiser des tâches chronophages ? Partagez-moi les détails de votre
-                projet et vos besoins via le formulaire. Je suis passionné par la transformation digitale
-                et je suis impatient de comprendre vos défis et de vous proposer une solution personnalisée et
-                performante. Ensemble, nous pouvons concrétiser vos objectifs et faire passer votre activité au
-                niveau supérieur.</p>
+                projet et vos besoins via le formulaire.</p>
         </div>
 
-        <div class="contact__form opacity-0 flex flex-col items-center  justify-center min-w-[40rem] max-w-1/2  rounded-2xl">
+        <div class="contact__form opacity-0 flex flex-col items-center  justify-center w-full lg:w-1/2 max-w-[700px] m-auto lg:p-6 rounded-2xl">
 
             <form class="flex flex-col items-center justify-center w-full m-auto " @submit.prevent="sendMail">
                 <input type="text" placeholder="Nom et prénom"

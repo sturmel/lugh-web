@@ -1,11 +1,11 @@
 <template>
-    <section class="relative heroshot w-full min-h-screen flex flex-wrap m-auto mt-0 perspective-[1000px]"
+    <section class="relative heroshot w-full min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
         @mousemove="imageCardInteraction" ref="heroShotSection">
 
-        <div class="flex flex-col items-center justify-center w-1/2 h-full m-auto ml-0 z-20 ">
+        <div class="flex flex-col items-center justify-center w-full mt-10 md:mt-auto md:w-1/2 h-full m-auto ml-0 z-20">
             <div class="relative flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
                 <h3
-                    class="heroshot__title text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    class="heroshot__title text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                     Digitalisez votre succès :</h3>
                 <h1
                     class="heroshot__bottomline text-4xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
@@ -14,17 +14,16 @@
                     class="heroshot__subtitle text-2xl text-tangerine-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
                     Développons ensemble votre présence en ligne, vos outils de productivité, sécurisons votre infrastructure et automatisons vos processus.</h2>
             </div>
-            <div class="flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
+            <div class="flex flex-col lg:flex-row items-center justify-center w-full m-auto ml-0 mt-5">
                 <ButtonsBlue text="Découvrez mes services" @click="$emit('scrollTo', 'services')"
-                    class="heroshot__button m-auto ml-0 mr-5 -translate-y-full opacity-0" />
+                    class="heroshot__button m-auto ml-0 lg:mr-5 -translate-y-full opacity-0" />
                 <ButtonsOrange text="Me contacter" @click="$emit('scrollTo', 'contact')"
-                    class="heroshot__button m-auto ml-0 -translate-y-full opacity-0" />
+                    class="heroshot__button m-auto mt-5 ml-0 lg:mt-auto  -translate-y-full opacity-0" />
             </div>
         </div>
-
-        <div class="heroshot__image scale-95 opacity-0 flex  absolute h-2/3 max-w-1/2  rounded-2xl bg-egyptian-blue-500 m-auto top-0 bottom-0 right-5"
+        <div class="heroshot__image scale-95 opacity-0 flex w-1/2 max-w-[550px] rounded-2xl bg-egyptian-blue-500 m-auto"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
-            <img src="/images/pages/home/heroshot.webp" alt="Lugh Web Logo"
+            <img src="/images/pages/home/heroshot.webp" alt="Mascote de l'agence qui saute" 
                 class="character m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
         </div>
 
@@ -69,7 +68,7 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
         rotateY: `${x * 15}deg`,
         rotateX: `${y * 15 * -1}deg`,
         transform: `translateZ(${y * 2}rem)`,
-        boxShadow: `${x * -5}rem ${y * -5}rem 2rem rgba(0, 0, 0, 0.25), ${x * 5}rem ${y * 5}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: `${x * -2}rem ${y * -2}rem 1rem rgba(0, 0, 0, 0.25), ${x * 4}rem ${y * 4}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -4}rem ${y * -4}rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
@@ -78,7 +77,7 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
         translateZ: y * 2 + 'rem',
         translateY: `${y * 5}rem`,
         translateX: `${x * 5}rem`,
-        filter: `drop-shadow(${x * 2}rem ${y * 2}rem 3rem rgba(0, 0, 0, 0.5))`,
+        filter: `drop-shadow(${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.5))`,
     });
 };
 
@@ -115,6 +114,7 @@ const imageCardAndButtonAppear = () => {
     const buttons = heroShotSection.value.querySelectorAll(".heroshot__button");
     const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
 
+
     buttons.forEach((button, index: number) => {  
         gsap.to(button, {
             duration: 0.5,
@@ -135,6 +135,14 @@ const imageCardAndButtonAppear = () => {
                 opacity: 1,
                 ease: "power1.inOut",
                 onComplete: () => {
+                    gsap.to(imageContainer.value, {
+                        duration: 0.5,
+                        rotateY: `-10deg`,
+                        rotateX: `0deg`,
+                        scale: 1,
+                        transform: `translateZ(0)`,
+                        boxShadow: `2rem 2rem 1rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+                    });
                     gsap.to(imageCharacter, {
                         duration: 0.5,
                         rotateY: `-10deg`,
@@ -143,16 +151,9 @@ const imageCardAndButtonAppear = () => {
                         translateY: '-1rem',
                         translateX: '-1rem',
                         scale: 1,
-                        filter: `drop-shadow(2rem 2rem 3rem rgba(0, 0, 0, 0.5))`,
+                        filter: `drop-shadow(5rem 5rem 5rem rgba(0, 0, 0, 0.5))`,
                     });
-                    gsap.to(imageContainer.value, {
-                        duration: 0.5,
-                        rotateY: `-10deg`,
-                        rotateX: `0deg`,
-                        scale: 1,
-                        transform: `translateZ(0)`,
-                        boxShadow: `4rem 4rem 2rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
-                    });
+
                 },
             });
         },

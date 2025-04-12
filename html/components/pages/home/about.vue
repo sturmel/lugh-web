@@ -2,18 +2,18 @@
     <section class="relative flex flex-wrap about perspective-[1000px]" @mousemove="imageCardInteraction"
         ref="aboutSection">
         <h2
-            class="about__title w-full text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+            class="about__title w-full text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
             Un parcours unique au service de vos projets.
         </h2>
         <p
             class="about__bottomline w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             Une expertise complète et une approche globale pour la réussite durable de vos projets numériques.</p>
-        <div class="about__image scale-95 opacity-0 flex h-1/2 max-w-1/3  rounded-2xl bg-emerald-500 m-auto top-0 bottom-0 right-5"
+        <div class="about__image opacity-0 flex w-1/2 max-w-[400px] rounded-2xl bg-emerald-500 m-auto"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
             <img src="/images/pages/home/about_jump.webp" alt="Lugh Web Logo"
                 class="m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
         </div>
-        <div class="about__container__content w-1/2">
+        <div class="about__container__content w-full mt-10 md:mt-auto md:w-1/2">
             <div class="about__container__content__text flex flex-col w-full m-auto ml-0 mb-5 pointer-events-none"
                 ref="textContent">
                 <p class="text-xl mb-10 opacity-0 scale-105">Avec plus de 20 ans dédiés à
@@ -94,7 +94,7 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
         rotateY: `${x * 15}deg`,
         rotateX: `${y * 15 * -1}deg`,
         transform: `translateZ(${y * 2}rem)`,
-        boxShadow: `${x * -5}rem ${y * 5}rem 2rem rgba(0, 0, 0, 0.25), ${x * 5}rem ${y * 5}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: `${x * -2}rem ${y * -2}rem 2rem rgba(0, 0, 0, 0.25), ${x * 5}rem ${y * 5}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
@@ -103,7 +103,7 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
         translateZ: y * 2 + 'rem',
         translateY: `${y * 5}rem`,
         translateX: `${x * 5}rem`,
-        filter: `drop-shadow(${x * -5}rem ${y * 5}rem 3rem rgba(0, 0, 0, 0.5))`,
+        filter: `drop-shadow(${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.5))`,
 
     });
 };
@@ -122,7 +122,7 @@ const onMouseLeave = () => {
         rotateY: `10deg`,
         rotateX: `0deg`,
         transform: `translateZ(0)`,
-        boxShadow: `-1rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: `-2rem 2rem 2rem rgba(0, 0, 0, 0.25), 5rem 5rem 5rem rgba(255, 255, 255, 0.2) inset, -5rem -5rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
@@ -131,7 +131,7 @@ const onMouseLeave = () => {
         translateZ: '2rem',
         translateY: '2rem',
         translateX: '2rem',
-        filter: `drop-shadow(-2rem 2rem 2rem rgba(0, 0, 0, 0.5))`,
+        filter: `drop-shadow(-5rem 5rem 5rem rgba(0, 0, 0, 0.5))`,
     });
 };
 
@@ -168,7 +168,7 @@ const imageCardAndButtonAndTextAppear = () => {
                         translateZ: '2rem',
                         translateY: '2rem',
                         translateX: '2rem',
-                        filter: `drop-shadow(-2rem 2rem 3rem rgba(0, 0, 0, 0.5))`,
+                        filter: `drop-shadow(-5rem 5rem 5rem rgba(0, 0, 0, 0.5))`,
                     });
                     gsap.to(imageContainer.value, {
                         duration: 0.5,
@@ -176,7 +176,7 @@ const imageCardAndButtonAndTextAppear = () => {
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: `-1rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+                        boxShadow: `-2rem 2rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset`,
                     });
                 },
             });
