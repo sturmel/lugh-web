@@ -1,29 +1,31 @@
 <template>
-    <section class="relative heroshot w-full h-[calc(100vh-8rem)] min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
+    <section class="relative heroshot w-full md:h-[calc(100vh-8rem)] min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
         @mousemove="imageCardInteraction" ref="heroShotSection">
 
         <div class="flex flex-col items-center justify-center w-full mt-10 md:mt-auto md:w-1/2 h-full m-auto ml-0 z-20">
             <div class="relative flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
                 <h3
                     class="heroshot__title text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
-                    Digitalisez votre succès :</h3>
+                    {{ titleText }}</h3>
                 <h1
                     class="heroshot__bottomline text-4xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
-                    Sites web, applications mobiles & outils métiers sur mesure</h1>
+                    {{ bottomLineText }}</h1>
                 <h2
                     class="heroshot__subtitle text-2xl text-tangerine-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
-                    Développons ensemble votre présence en ligne, vos outils de productivité, sécurisons votre infrastructure et automatisons vos processus.</h2>
+                    {{ subtitleText }}</h2>
             </div>
             <div class="flex flex-col lg:flex-row items-center justify-center w-full m-auto ml-0 mt-5">
+                <!--
                 <ButtonsBlue text="Découvrez mes services" @click="$emit('scrollTo', 'services')"
                     class="heroshot__button m-auto ml-0 lg:mr-5 -translate-y-full opacity-0" />
+                    -->
                 <ButtonsOrange text="Me contacter" @click="$emit('scrollTo', 'contact')"
                     class="heroshot__button m-auto mt-5 ml-0 lg:mt-auto  -translate-y-full opacity-0" />
             </div>
         </div>
         <div class="heroshot__image scale-95 opacity-0 flex w-1/2 max-w-[550px] rounded-2xl bg-egyptian-blue-500 m-auto"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
-            <img src="/images/pages/home/heroshot.webp" alt="Mascote de l'agence qui saute" 
+            <img :src="imageUrl" :alt="imageAlt"
                 class="character m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
         </div>
     </section>
@@ -39,6 +41,29 @@ interface Position {
 }
 
 const emit = defineEmits(['scrollTo']);
+
+defineProps({
+    titleText: {
+        type: String,
+        required: true
+    },
+    bottomLineText: {
+        type: String,
+        required: true
+    },
+    subtitleText: {
+        type: String,
+        required: true
+    },
+    imageUrl: {
+        type: String,
+        required: true
+    },
+    imageAlt: {
+        type: String,
+        required: true
+    }
+})
 
 const isHovered = ref(false);
 const heroShotSection = ref<HTMLElement | null>(null);

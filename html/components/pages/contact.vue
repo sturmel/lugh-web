@@ -1,8 +1,8 @@
 <template>
     <section class="relative contact w-full flex flex-wrap m-auto mt-0 perspective-[1000px]" ref="contactSection">
-        <div class="flex flex-col w-full lg:w-1/2 m-auto ml-0  mb-5 pointer-events-none">
+        <div class="flex flex-col w-full lg:w-1/2 m-auto mt-0  ml-0  mb-5 pointer-events-none">
             <h2
-                class="contact__title text-egyptian-blue-500 blur-[15px] opacity-0 text-5xl lg:text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="contact__title text-egyptian-blue-500 blur-[15px] opacity-0 text-5xl lg:text-6xl m-auto ml-0 mb-5 mt-0 font-bold text-shadow-md text-shadow-white/25">
                 Discutons de vos ambitions digitales :</h2>
             <h2
                 class="contact__bottomline text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
@@ -16,7 +16,7 @@
                 projet et vos besoins via le formulaire.</p>
         </div>
 
-        <div class="contact__form opacity-0 flex flex-col items-center  justify-center w-full lg:w-1/2 max-w-[700px] m-auto lg:p-6 rounded-2xl">
+        <div class="contact__form opacity-0 flex flex-col items-center  justify-center w-full lg:w-1/2 max-w-[700px] m-auto lg:p-10 rounded-2xl">
 
             <form class="flex flex-col items-center justify-center w-full m-auto " @submit.prevent="sendMail">
                 <input type="text" placeholder="Nom et prénom"

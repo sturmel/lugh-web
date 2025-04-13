@@ -1,7 +1,7 @@
 <template>
     <nav class="navigation fixed overflow-hidden top-0 left-0 w-full h-[70px] bg-white/25 backdrop-blur-3xl border-b border-french-gray-500 shadow-[0rem_0rem_1rem_rgba(0,0,0,0.15)] z-50"
         ref="navigation">
-        <div class="relative w-full flex m-auto mt-0 h-[70px] items-center ">
+        <div class="relative w-full flex m-auto mt-0 h-[70px] max-w-[1800px] items-center ">
             <a href="/" class="m-auto  text-2xl  text-egyptian-blue-500 ml-10 mr-0">LUGH WEB</a>
             <span class="bg-french-gray-500 w-36 h-[1px] absolute -rotate-[60deg] top-10 left-36 hidden 2xl:flex" />
             <div class="hidden 2xl:flex ml-20 m-auto">
@@ -100,15 +100,15 @@
                 <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
                     target="_blank" class="group flex m-auto">
                     <Icon name="mdi:linkedin"
-                        class=" text-5xl  text-french-gray-500 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
+                        class=" text-5xl  text-french-gray-700 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
                 </a>
                 <a href="https://github.com/sturmel" target="_blank" class="group flex m-auto">
                     <Icon name="mdi:github"
-                        class="text-5xl  text-french-gray-500 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
+                        class="text-5xl  text-french-gray-700 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
                 </a>
                 <a href="https://www.facebook.com/Lughweb" target="_blank" class="group flex m-auto">
                     <Icon name="mdi:facebook"
-                        class=" text-5xl  text-french-gray-500 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
+                        class=" text-5xl  text-french-gray-700 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
                 </a>
             </div>
         </div>

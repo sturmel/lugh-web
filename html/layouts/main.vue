@@ -2,10 +2,10 @@
   <div class="w-full flex flex-col items-center justify-center relative">
     <NuxtLayout name="navigation" @scrollTo="handleScrollTo" class="z-20"/>
     <NuxtParticles id="mainParticles" :options="options" class="opacity-30 z-0" />
-    <div class="w-11/12 max-w-[1400px] m-auto mt-24 z-10 flex flex-col items-center justify-center">
+    <div class="w-11/12 max-w-[1400px] m-auto mt-24 mb-24 z-10 flex flex-col items-center justify-center">
       <slot :scrollTo="handleScrollTo"/>
     </div>
-    <NuxtLayout name="footer" />
+    <NuxtLayout name="footer" class="z-10" />
   </div>
 </template>
 

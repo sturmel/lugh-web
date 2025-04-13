@@ -1,3 +1,61 @@
 <template>
-    <h1>Automatisation</h1>
-</template>
+    <div class="relative flex flex-col min-h-screen max-w-[100vw] overflow-hidden">
+      <NuxtLayout name="main" @scrollTo="scrollToSection">
+  
+        <LazyPagesHeroShot class="mb-10" titleText="Gagnez du temps et réduisez les erreurs grâce à l'automatisation :"
+          bottomLineText="Intégration de solutions sur mesure pour vos tâches répétitives"
+          subtitleText="Automatisez vos flux de travail et concentrez-vous sur votre cœur de métier."
+          imageUrl="/images/pages/automatisation.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
+          @scrollTo="scrollToSection" />
+  
+  
+        <LazyPagesServices class="mb-10" id="services" />
+        <LazyPagesContact class="mb-10" id="contact" />
+  
+      </NuxtLayout>
+    </div>
+  </template>
+  
+  <script setup lang="ts">
+  const { $gsap: gsap } = useNuxtApp();
+  const config = useRuntimeConfig();
+  const websiteUrl = config.public.websiteUrl;
+  
+  useHead({
+  title: 'Lugh Web - Intégration de solutions d\'automatisation sur mesure',
+  htmlAttrs: {
+    lang: 'fr'
+  },
+  meta: [
+    { name: "description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    { name: "robots", content: "index, follow" },
+    { name: "googlebot", content: "index, follow" },
+    { name: "author", content: "Lugh Web" },
+    { name: "keywords", content: "automatisation, intégration, flux de travail, efficacité, gain de temps" },
+    { property: "og:title", content: "Lugh Web - Intégration de solutions d'automatisation sur mesure" },
+    { property: "og:description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },
+    { property: "og:image", content: websiteUrl + "/images/pages/automatisation.webp" },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:title", content: "Lugh Web - Intégration de solutions d'automatisation sur mesure" },
+    { property: "twitter:description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },
+    { property: "twitter:image", content: websiteUrl + "/images/pages/automatisation.webp" }
+  ],
+  link: [{ rel: "canonical", href: websiteUrl + "/services/automatisation" }],
+});
+  const scrollToSection = (targetId: string) => {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      let offsetTop = targetElement.offsetTop - 100;
+      gsap.to(window, {
+        duration: 2,
+        scrollTo: { y: offsetTop, autoKill: false },
+        ease: "power2.inOut"
+      });
+    }
+  };
+  
+  onMounted(() => {
+    window.scrollTo(0, 0);
+  });
+  </script>

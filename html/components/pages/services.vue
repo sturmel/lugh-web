@@ -12,34 +12,33 @@
             <div class="services__container__card opacity-0 py-10 md:px-16">
                 <LazyCardService title="Sites web"
                     text="Création de sites web sur mesure, vitrines ou e-commerce, pour une présence en ligne qui reflète votre identité et booste votre activité."
-                    imageUrl="/images/pages/home/service_web.webp" redirectUrl="/services/website" hexColor="#bbb5bd" />
+                    imageUrl="/images/pages/webSite.webp" redirectUrl="/services/website" hexColor="#bbb5bd" />
             </div>
             <div class="services__container__card opacity-0 py-10 md:px-16">
                 <LazyCardService title="Applications mobiles"
                     text="Conception d'applications mobiles intuitives et performantes, pour iOS et Android, offrant une expérience utilisateur optimale sur tous les supports."
-                    imageUrl="/images/pages/home/service_mobile.webp" redirectUrl="/services/website"
+                    imageUrl="/images/pages/mobile.webp" redirectUrl="/services/website"
                     hexColor="#2ecc71" />
             </div>
             <div class="services__container__card opacity-0 py-10 md:px-16">
                 <LazyCardService title="Outils Métiers"
                     text="Développement d'outils métiers personnalisés pour optimiser vos processus internes, gagner en efficacité et faciliter la gestion de vos données."
-                    imageUrl="/images/pages/home/service_outil.webp" redirectUrl="/services/website"
+                    imageUrl="/images/pages/tool.webp" redirectUrl="/services/website"
                     hexColor="#3f75f3" />
             </div>
             <div class="services__container__card opacity-0 py-10 md:px-16">
 
                 <LazyCardService title="Intégration d'automatisation"
                     text="Automatisation de tâches répétitives pour gagner du temps et réduire les erreurs, en intégrant des solutions sur mesure à votre système d'information."
-                    imageUrl="/images/pages/home/service_automatisation.webp" redirectUrl="/services/website"
+                    imageUrl="/images/pages/automatisation.webp" redirectUrl="/services/website"
                     hexColor="#3f75f3" />
             </div>
             <div class="services__container__card opacity-0 py-10 md:px-16">
                 <LazyCardService title="Audit de sécurité"
                     text="Analyse approfondie de votre système d'information pour identifier les failles de sécurité et garantir la protection de vos données sensibles."
-                    imageUrl="/images/pages/home/service_securite.webp" redirectUrl="/services/website"
+                    imageUrl="/images/pages/audit.webp" redirectUrl="/services/website"
                     hexColor="#bbb5bd" />
             </div>
-
         </div>
     </section>
 </template>
