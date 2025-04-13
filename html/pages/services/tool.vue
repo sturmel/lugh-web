@@ -6,7 +6,7 @@
           bottomLineText="Développement de solutions logicielles pour une efficacité accrue"
           subtitleText="Simplifiez la gestion de vos données et améliorez vos processus internes sur mesure."
           imageUrl="/images/pages/tool.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
-          @scrollTo="scrollToSection" />
+          serviceButtonText="Découvrez mes autres services" imageColorBgClass="bg-egyptian-blue-500" @scrollTo="scrollToSection" />
   
   
         <LazySectionServices class="mb-10" id="services" />

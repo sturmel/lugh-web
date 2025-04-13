@@ -6,7 +6,7 @@
           bottomLineText="Intégration de solutions sur mesure pour vos tâches répétitives"
           subtitleText="Automatisez vos flux de travail et concentrez-vous sur votre cœur de métier."
           imageUrl="/images/pages/automatisation.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
-          @scrollTo="scrollToSection" />
+          serviceButtonText="Découvrez mes autres services" imageColorBgClass="bg-egyptian-blue-500" @scrollTo="scrollToSection" />
   
   
         <LazySectionServices class="mb-10" id="services" />

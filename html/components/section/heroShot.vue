@@ -1,5 +1,6 @@
 <template>
-    <section class="relative heroshot w-full md:h-[calc(100vh-8rem)] min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
+    <section
+        class="relative heroshot w-full md:h-[calc(100vh-8rem)] min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
         @mousemove="imageCardInteraction" ref="heroShotSection">
 
         <div class="flex flex-col items-center justify-center w-full mt-10 md:mt-auto md:w-1/2 h-full m-auto ml-0 z-20">
@@ -15,18 +16,16 @@
                     {{ subtitleText }}</h2>
             </div>
             <div class="flex flex-col lg:flex-row items-center justify-center w-full m-auto ml-0 mt-5">
-                <!--
-                <ButtonBlue text="Découvrez mes services" @click="$emit('scrollTo', 'services')"
+                <ButtonBlue :text="serviceButtonText" @click="$emit('scrollTo', 'services')"
                     class="heroshot__button m-auto ml-0 lg:mr-5 -translate-y-full opacity-0" />
-                    -->
                 <ButtonOrange text="Me contacter" @click="$emit('scrollTo', 'contact')"
                     class="heroshot__button m-auto mt-5 ml-0 lg:mt-auto  -translate-y-full opacity-0" />
             </div>
         </div>
-        <div class="heroshot__image scale-95 opacity-0 flex w-1/2 max-w-[550px] rounded-2xl bg-egyptian-blue-500 m-auto"
-            @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
-            <img :src="imageUrl" :alt="imageAlt"
-                class="character m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
+        <div class="heroshot__image scale-95 opacity-0 flex w-2/3 md:w-1/2 min-w-[250px] max-w-[550px] max-h-[550px] rounded-2xl m-auto"
+            :class="imageColorBgClass" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
+            <img :src="imageUrl" :alt="imageAlt" class="character m-auto h-full object-cover opacity-0 scale-95"
+                ref="imageCharacter" />
         </div>
     </section>
 </template>
@@ -62,13 +61,30 @@ defineProps({
     imageAlt: {
         type: String,
         required: true
-    }
+    },
+    serviceButtonText: {
+        type: String,
+        required: true
+    },
+    imageColorBgClass: {
+        type: String,
+        required: true
+    },
 })
 
 const isHovered = ref(false);
 const heroShotSection = ref<HTMLElement | null>(null);
 const imageContainer = ref<HTMLElement | null>(null);
 const imageCharacter = ref<HTMLImageElement | null>(null);
+let imageOffsetMultiplicator = 1;
+
+const setOffsetMultiplicator = () => {
+    if (window.innerWidth < 768) {
+        imageOffsetMultiplicator = 0.5;
+    } else {
+        imageOffsetMultiplicator = 1;
+    }
+};
 
 const imageCardInteraction = (mouseEvent: MouseEvent) => {
     if (!isHovered.value || !imageContainer.value || !imageCharacter.value) return;
@@ -86,19 +102,19 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
 
     gsap.to(imageContainer.value, {
         duration: 0.5,
-        rotateY: `${x * 15}deg`,
-        rotateX: `${y * 15 * -1}deg`,
-        transform: `translateZ(${y * 2}rem)`,
-        boxShadow: `${x * -2}rem ${y * -2}rem 1rem rgba(0, 0, 0, 0.25), ${x * 4}rem ${y * 4}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -4}rem ${y * -4}rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        rotateY: `${x * 15 * imageOffsetMultiplicator}deg`,
+        rotateX: `${y * 15 * -1 * imageOffsetMultiplicator}deg`,
+        transform: `translateZ(${y * 2 * imageOffsetMultiplicator}rem)`,
+        boxShadow: `${x * -2 * imageOffsetMultiplicator}rem ${y * -2 * imageOffsetMultiplicator}rem 1rem rgba(0, 0, 0, 0.25), ${x * 4 * imageOffsetMultiplicator}rem ${y * 4 * imageOffsetMultiplicator}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -4 * imageOffsetMultiplicator}rem ${y * -4 * imageOffsetMultiplicator}rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
-        rotateY: `${x * 15}deg`,
-        rotateX: `${y * 15 * -1}deg`,
-        translateZ: y * 2 + 'rem',
-        translateY: `${y * 5}rem`,
-        translateX: `${x * 5}rem`,
-        filter: `drop-shadow(${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.5))`,
+        rotateY: `${x * 15 * imageOffsetMultiplicator}deg`,
+        rotateX: `${y * 15 * -1 * imageOffsetMultiplicator}deg`,
+        translateZ: y * 2 * imageOffsetMultiplicator + 'rem',
+        translateY: `${y * 5 * imageOffsetMultiplicator}rem`,
+        translateX: `${x * 5 * imageOffsetMultiplicator}rem`,
+        filter: `drop-shadow(${x * -4 * imageOffsetMultiplicator}rem ${y * -4 * imageOffsetMultiplicator}rem 2rem rgba(0, 0, 0, 0.5))`,
     });
 };
 
@@ -116,27 +132,27 @@ const onMouseLeave = () => {
         rotateY: `-10deg`,
         rotateX: `0deg`,
         transform: `translateZ(0)`,
-        boxShadow: `1rem 1rem 2rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: 2 * imageOffsetMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: `-10deg`,
         rotateX: `0deg`,
-        translateZ: '2rem',
-        translateY: '1rem',
-        translateX: '1rem',
-        filter: `drop-shadow(1.75rem 1.75rem 3rem rgba(0, 0, 0, 0.5))`,
+        translateZ: 2 * imageOffsetMultiplicator + 'rem',
+        translateY: -1 * imageOffsetMultiplicator + 'rem',
+        translateX: -1 * imageOffsetMultiplicator + 'rem',
+        filter: 'drop-shadow(' + 4 * imageOffsetMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
     });
 };
 
 const imageCardAndButtonAppear = () => {
     if (!imageContainer.value || !heroShotSection.value) return;
-    
+
     const buttons = heroShotSection.value.querySelectorAll(".heroshot__button");
     const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
 
 
-    buttons.forEach((button, index: number) => {  
+    buttons.forEach((button, index: number) => {
         gsap.to(button, {
             duration: 0.5,
             opacity: 1,
@@ -162,17 +178,17 @@ const imageCardAndButtonAppear = () => {
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: `2rem 2rem 1rem rgba(0, 0, 0, 0.25), -4rem -4rem 5rem rgba(255, 255, 255, 0.2) inset, 4rem 4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+                        boxShadow: 2 * imageOffsetMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
                     });
                     gsap.to(imageCharacter, {
                         duration: 0.5,
                         rotateY: `-10deg`,
                         rotateX: `0deg`,
-                        translateZ: '2rem',
-                        translateY: '-1rem',
-                        translateX: '-1rem',
+                        translateZ: 2 * imageOffsetMultiplicator + 'rem',
+                        translateY: -1 * imageOffsetMultiplicator + 'rem',
+                        translateX: -1 * imageOffsetMultiplicator + 'rem',
                         scale: 1,
-                        filter: `drop-shadow(5rem 5rem 5rem rgba(0, 0, 0, 0.5))`,
+                        filter: 'drop-shadow(' + 4 * imageOffsetMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
                     });
 
                 },
@@ -207,7 +223,7 @@ const imageCardAndButtonHide = () => {
         transform: `translateZ(0)`,
         boxShadow: `0rem 0rem 0rem rgba(0, 0, 0, 0), 0rem 0rem 0rem rgba(255, 255, 255, 0) inset, 0rem 0rem 0rem rgba(0, 0, 0, 0) inset`,
     });
-    buttons.forEach((button, index: number) => {  
+    buttons.forEach((button, index: number) => {
         gsap.to(button, {
             duration: 0.5,
             opacity: 0,
@@ -316,11 +332,14 @@ const sectionVisibilityTrigger = () => {
 };
 
 onMounted(() => {
+    setOffsetMultiplicator();
+    window.addEventListener("resize", setOffsetMultiplicator);
     window.addEventListener("mousemove", imageCardInteraction);
     sectionVisibilityTrigger();
 });
 
 onBeforeUnmount(() => {
     window.removeEventListener("mousemove", imageCardInteraction);
+    window.removeEventListener("resize", setOffsetMultiplicator);
 });
 </script>

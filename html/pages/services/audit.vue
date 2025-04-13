@@ -6,7 +6,7 @@
         bottomLineText="Analyse approfondie de votre système d'information et identification des failles"
         subtitleText="Sécurisons ensemble votre infrastructure numérique contre les menaces potentielles."
         imageUrl="/images/pages/audit.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
-        @scrollTo="scrollToSection" />
+        serviceButtonText="Découvrez mes autres services" imageColorBgClass="bg-egyptian-blue-500" @scrollTo="scrollToSection" />
 
 
       <LazySectionServices class="mb-10" id="services" />

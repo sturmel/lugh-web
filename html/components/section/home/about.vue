@@ -1,51 +1,29 @@
 <template>
-    <section class="relative flex flex-wrap about perspective-[1000px]" @mousemove="imageCardInteraction"
+    <section class="relative flex flex-wrap about perspective-[1000px] py-10" @mousemove="imageCardInteraction"
         ref="aboutSection">
         <h2
-            class="about__title w-full text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
-            Un parcours unique au service de vos projets.
+            class="about__title order-1 w-full text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+            {{ titleText }}
         </h2>
         <p
-            class="about__bottomline w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
-            Une expertise complète et une approche globale pour la réussite durable de vos projets numériques.</p>
-        <div class="about__image opacity-0 flex w-1/2 max-w-[400px] rounded-2xl bg-emerald-500 m-auto"
-            @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
-            <img src="/images/pages/homeAbout.webp" alt="Moi version cartoon 3D entrain de sauter"
-                class="m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
+            class="about__bottomline order-2 w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
+            {{ subtitleText }}</p>
+
+
+        <div class="about__image scale-95 opacity-0 flex w-2/3 md:w-1/2 min-w-[250px] max-w-[550px] max-h-[550px] rounded-2xl m-auto"
+            @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer"
+            :class="[imageColorBgClass, imagePosition === 'left' ? 'order-3' : 'order-4']">
+            <img :src="imageUrl" :alt="imageAlt" class="m-auto h-full object-cover opacity-0 scale-95"
+                ref="imageCharacter" />
         </div>
-        <div class="about__container__content w-full mt-10 md:mt-auto md:w-1/2">
+
+        <div class="about__container__content w-full mt-10 md:mt-auto md:w-1/2"
+            :class="imagePosition === 'left' ? 'order-4 md:ml-auto' : 'order-3 md:mr-auto'">
             <div class="about__container__content__text flex flex-col w-full m-auto ml-0 mb-5 pointer-events-none"
                 ref="textContent">
-                <p class="text-xl mb-10 blur-[15px] opacity-0">Avec plus de 20 ans dédiés à
-                    l'informatique et une expertise forgée dès 2010 dans le monde du Bug Bounty,
-                    la cybersécurité est au cœur de mon ADN professionnel. Ce parcours m'a permis de comprendre les
-                    systèmes de l'intérieur pour mieux les construire et les protéger.</p>
-
-                <p class="text-xl mb-10 blur-[15px] opacity-0">J'ai mis cette expertise au service de la création web au
-                    fil de diverses
-                    expériences : d'abord en tant
-                    que freelance, puis en agence, où j'ai pu travailler sur une variété de projets. Mon parcours s'est
-                    ensuite enrichi en tant que Directeur Technique (CTO), affinant ma vision stratégique et ma gestion
-                    de
-                    projets d'envergure. Durant toutes ces étapes, mon objectif est resté constant : réaliser des sites
-                    et
-                    applications qui excellent en performance, et sécurité, afin de vous
-                    fournir
-                    des solutions numériques efficaces, durables et sécurisées.
+                <p v-for="(p, index) in text" :key="index" class="text-xl mb-5 blur-[15px] opacity-0">
+                    {{ p }}
                 </p>
-                <p class="text-xl mb-10 blur-[15px] opacity-0">Aujourd'hui de retour en freelance, je mets à profit
-                    cette
-                    perspective globale
-                    unique, combinant
-                    expertise technique et vision stratégique acquise, pour donner vie à des projets innovants.
-                    Cette approche complète me permet de répondre à vos besoins les plus spécifiques et d'assurer le
-                    succès
-                    de vos projets digitaux.
-                </p>
-                <p class="text-xl mb-10 blur-[15px] opacity-0">Prêt à discuter de votre projet ? Me contacter pour
-                    explorer comment mon
-                    expertise peut faire la
-                    différence.</p>
             </div>
             <div class="flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
                 <ButtonOrange text="Me contacter" @click="emit('scrollTo', 'contact')"
@@ -67,11 +45,52 @@ interface Position {
 
 const emit = defineEmits(['scrollTo']);
 
+const props = defineProps({
+    imagePosition: {
+        type: String,
+        required: true
+    },
+    titleText: {
+        type: String,
+        required: true
+    },
+    subtitleText: {
+        type: String,
+        required: true
+    },
+    text: {
+        type: Array,
+        required: true,
+    },
+    imageUrl: {
+        type: String,
+        required: true
+    },
+    imageAlt: {
+        type: String,
+        required: true
+    },
+    imageColorBgClass: {
+        type: String,
+        required: true
+    },
+})
+
 const isHovered = ref(false);
 const aboutSection = ref<HTMLElement | null>(null);
 const imageContainer = ref<HTMLElement | null>(null);
 const imageCharacter = ref<HTMLImageElement | null>(null);
 const textContent = ref<HTMLElement | null>(null);
+
+let positionMultiplicator = 1;
+if (props.imagePosition === "right") {
+    positionMultiplicator = -1;
+}
+
+let imageOffsetMultiplicator = 1;
+
+let textElementHeight = 0;
+
 
 const imageCardInteraction = (mouseEvent: MouseEvent) => {
     if (!isHovered.value || !imageContainer.value || !imageCharacter.value) return;
@@ -89,20 +108,19 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
 
     gsap.to(imageContainer.value, {
         duration: 0.5,
-        rotateY: `${x * 15}deg`,
-        rotateX: `${y * 15 * -1}deg`,
+        rotateY: `${x * 15 * imageOffsetMultiplicator}deg`,
+        rotateX: `${y * 15 * -1 * imageOffsetMultiplicator}deg`,
         transform: `translateZ(${y * 2}rem)`,
-        boxShadow: `${x * -2}rem ${y * -2}rem 2rem rgba(0, 0, 0, 0.25), ${x * 5}rem ${y * 5}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: `${x * -2 * imageOffsetMultiplicator}rem ${y * -2 * imageOffsetMultiplicator}rem 1rem rgba(0, 0, 0, 0.25), ${x * 4 * imageOffsetMultiplicator}rem ${y * 4 * imageOffsetMultiplicator}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -4 * imageOffsetMultiplicator}rem ${y * -4 * imageOffsetMultiplicator}rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: `${x * 15}deg`,
         rotateX: `${y * 15 * -1}deg`,
-        translateZ: y * 2 + 'rem',
-        translateY: `${y * 5}rem`,
-        translateX: `${x * 5}rem`,
-        filter: `drop-shadow(${x * -5}rem ${y * -5}rem 5rem rgba(0, 0, 0, 0.5))`,
-
+        translateZ: y * 2 * imageOffsetMultiplicator + 'rem',
+        translateY: `${y * 5 * imageOffsetMultiplicator}rem`,
+        translateX: `${x * 5 * imageOffsetMultiplicator}rem`,
+        filter: `drop-shadow(${x * -4 * imageOffsetMultiplicator}rem ${y * -4 * imageOffsetMultiplicator}rem 2rem rgba(0, 0, 0, 0.5))`,
     });
 };
 
@@ -117,19 +135,19 @@ const onMouseLeave = () => {
 
     gsap.to(imageContainer.value, {
         duration: 0.5,
-        rotateY: `10deg`,
+        rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
         transform: `translateZ(0)`,
-        boxShadow: `-2rem 2rem 2rem rgba(0, 0, 0, 0.25), 5rem 5rem 5rem rgba(255, 255, 255, 0.2) inset, -5rem -5rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
-        rotateY: `10deg`,
+        rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
-        translateZ: '2rem',
-        translateY: '2rem',
-        translateX: '2rem',
-        filter: `drop-shadow(-5rem 5rem 5rem rgba(0, 0, 0, 0.5))`,
+        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
+        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
+        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
+        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
     });
 };
 
@@ -150,21 +168,21 @@ const imageCardAppear = () => {
                 onComplete: () => {
                     gsap.to(imageCharacter, {
                         duration: 0.5,
-                        rotateY: `10deg`,
+                        rotateY: (10 * positionMultiplicator) + 'deg',
                         rotateX: `0deg`,
                         scale: 1,
                         translateZ: '2rem',
-                        translateY: '2rem',
-                        translateX: '2rem',
-                        filter: `drop-shadow(-5rem 5rem 5rem rgba(0, 0, 0, 0.5))`,
+                        translateY: '1rem',
+                        translateX: '1rem',
+                        filter: 'drop-shadow(' + (-4 * positionMultiplicator) + 'rem 4rem 2rem rgba(0, 0, 0, 0.5))',
                     });
                     gsap.to(imageContainer.value, {
                         duration: 0.5,
-                        rotateY: `10deg`,
+                        rotateY: (10 * positionMultiplicator) + 'deg',
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: `-2rem 2rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset`,
+                        boxShadow: (-1 * positionMultiplicator) + 'rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset',
                     });
                 },
             });
@@ -172,6 +190,33 @@ const imageCardAppear = () => {
     });
 };
 
+const imageCardHide = () => {
+    if (!aboutSection.value) return;
+
+    const imageContainer = aboutSection.value.querySelector(".about__image");
+    const imageCharacter = aboutSection.value.querySelector(".about__image img");
+
+    gsap.to(imageCharacter, {
+        duration: 0.5,
+        rotateY: `0deg`,
+        rotateX: `0deg`,
+        translateZ: '0rem',
+        translateY: '0rem',
+        translateX: '0rem',
+        scale: 0.95,
+        opacity: 0,
+        filter: `drop-shadow(0rem 0rem 0rem rgba(0, 0, 0, 0))`,
+    });
+    gsap.to(imageContainer, {
+        duration: 0.5,
+        rotateY: `0deg`,
+        rotateX: `0deg`,
+        scale: 0.95,
+        transform: `translateZ(0)`,
+        boxShadow: `0rem 0rem 0rem rgba(0, 0, 0, 0), 0rem 0rem 0rem rgba(255, 255, 255, 0) inset, 0rem 0rem 0rem rgba(0, 0, 0, 0) inset`,
+    });
+
+};
 
 const buttonAppear = () => {
     if (!aboutSection.value || !imageContainer.value) return;
@@ -199,40 +244,12 @@ const buttonHide = () => {
     });
 };
 
-const imageCardHide = () => {
-    if (!aboutSection.value) return;
-
-    const imageContainer = aboutSection.value.querySelector(".about__image");
-    const imageCharacter = aboutSection.value.querySelector(".about__image img");   
-
-    gsap.to(imageCharacter, {
-        duration: 0.5,
-        rotateY: `0deg`,
-        rotateX: `0deg`,
-        translateZ: '0rem',
-        translateY: '0rem',
-        translateX: '0rem',
-        scale: 0.95,
-        opacity: 0,
-        filter: `drop-shadow(0rem 0rem 0rem rgba(0, 0, 0, 0))`,
-    });
-    gsap.to(imageContainer, {
-        duration: 0.5,
-        rotateY: `0deg`,
-        rotateX: `0deg`,
-        scale: 0.95,
-        transform: `translateZ(0)`,
-        boxShadow: `0rem 0rem 0rem rgba(0, 0, 0, 0), 0rem 0rem 0rem rgba(255, 255, 255, 0) inset, 0rem 0rem 0rem rgba(0, 0, 0, 0) inset`,
-    });
-
-};
-
 const textScrollTrigger = (el: HTMLElement) => {
     if (!el) return;
     ScrollTrigger.create({
         trigger: el,
-        start: 'top 80%',
-        end: 'bottom 20%',
+        start: 'top 90%',
+        end: 'bottom 10%',
         onEnter: () => {
             showBlurText(el as HTMLElement, 0);
         },
@@ -255,7 +272,6 @@ const sectionVisibilityTrigger = () => {
     const bottomline = aboutSection.value.querySelector(".about__bottomline");
     const textContent = aboutSection.value.querySelector(".about__container__content__text");
     const button = aboutSection.value.querySelector(".about__button");
-
 
     ScrollTrigger.create({
         trigger: imageContainer,
@@ -319,12 +335,37 @@ const sectionVisibilityTrigger = () => {
     });
 }
 
+const setResolutionVariablesAndImageSize = () => {
+    if (!aboutSection.value || !imageContainer.value) return;
+    if (window.innerWidth < 768) {
+        imageOffsetMultiplicator = 0.5;
+        imageContainer.value.style.height = "";
+        imageContainer.value.style.width = "";
+    } else {
+        imageOffsetMultiplicator = 1;
+        textElementHeight = (aboutSection.value?.querySelector(
+            ".about__container__content"
+        ) as HTMLElement)?.offsetHeight || 0;
+        setImageHeight();
+    }
+};
+
+const setImageHeight = () => {
+    if (!aboutSection.value || !imageContainer.value) return;
+    imageContainer.value.style.height =
+        textElementHeight + 50 + "px";
+    imageContainer.value.style.width =
+        textElementHeight + 50 + "px";
+};
+
 onMounted(() => {
+    setResolutionVariablesAndImageSize();
+    window.addEventListener("resize", setResolutionVariablesAndImageSize);
     window.addEventListener("mousemove", imageCardInteraction);
     sectionVisibilityTrigger();
 });
-
 onBeforeUnmount(() => {
     window.removeEventListener("mousemove", imageCardInteraction);
+    window.removeEventListener("resize", setResolutionVariablesAndImageSize);
 });
 </script>

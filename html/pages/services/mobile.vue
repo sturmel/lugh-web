@@ -6,7 +6,7 @@
           bottomLineText="Conception d'applications intuitives pour Ios et Android"
           subtitleText="Offrez à vos utilisateurs une expérience unique et engageante sur tous les supports."
           imageUrl="/images/pages/mobile.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
-          @scrollTo="scrollToSection" />
+          serviceButtonText="Découvrez mes autres services" imageColorBgClass="bg-egyptian-blue-500" @scrollTo="scrollToSection" />
   
   
         <LazySectionServices class="mb-10" id="services" />

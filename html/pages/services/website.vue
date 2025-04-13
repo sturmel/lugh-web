@@ -1,14 +1,27 @@
 <template>
     <div class="relative flex flex-col min-h-screen max-w-[100vw] overflow-hidden">
       <NuxtLayout name="main" @scrollTo="scrollToSection">
-  
-        <LazySectionHeroShot class="mb-10" titleText="Une vitrine en ligne à votre image :"
+       <LazySectionHeroShot class="mb-10" titleText="Une vitrine en ligne à votre image :"
           bottomLineText="Création de sites web sur mesure, e-commerce et vitrines"
           subtitleText="Propulsez votre activité avec un site web professionnel, optimisé pour la performance et le référencement."
           imageUrl="/images/pages/webSite.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
-          @scrollTo="scrollToSection" />
-  
-        <LazySectionServices class="mb-10" id="services" />
+          serviceButtonText="Découvrez mes autres services" imageColorBgClass="bg-egyptian-blue-500" @scrollTo="scrollToSection" />
+
+          <LazyContainerImageText class="mb-10" imagePosition="right" titleText="Titre" subtitleText="Sous titre"   :text="[
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'This is the second paragraph.',
+    'This is the third paragraph (optional).'
+  ]"
+        imageUrl="/images/pages/webSite.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
+        imageColorBgClass="bg-emerald-500" />
+        
+           
+          <LazySectionServices class="mb-10" id="services" />
         <LazySectionContact class="mb-10" id="contact" />
   
       </NuxtLayout>
