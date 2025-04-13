@@ -46,10 +46,7 @@
 
 <script setup lang="ts">
 import { showBlurText, hideBlurText, showCardEl, hideCardEl } from '~/composables/animations';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const servicesSection = ref<HTMLElement | null>(null);
 

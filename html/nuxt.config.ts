@@ -15,10 +15,16 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    build: {
+      sourcemap: true, // Enable sourcemap generation
+    },
   },
   particles: {
     mode: 'slim',
     lazy: true
+  },
+  devServer: {
+    port: 3000, // Set the development port here
   },
   icon: {
     serverBundle: {

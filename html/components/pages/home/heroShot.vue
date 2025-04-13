@@ -32,10 +32,7 @@
 
 <script setup lang="ts">
 import { showBlurText, hideBlurText } from '~/composables/animations';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 interface Position {
     height: number;

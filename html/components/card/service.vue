@@ -18,8 +18,7 @@
 
 <script setup lang="ts">
 import { hexToRgb } from '@/composables/misc'
-import gsap from 'gsap';
-import { ref, onMounted } from 'vue';
+const { $gsap: gsap } = useNuxtApp();
 
 const props = defineProps({
     title: {

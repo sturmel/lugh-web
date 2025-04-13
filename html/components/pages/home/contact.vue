@@ -40,11 +40,7 @@
 
 <script setup lang="ts">
 import { showBlurText, hideBlurText, showCardEl, hideCardEl } from '~/composables/animations';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { ref, onMounted } from 'vue';
-
-gsap.registerPlugin(ScrollTrigger);
+const { $gsap: gsap, $ScrollTrigger: ScrollTrigger } = useNuxtApp();
 
 const contactSection = ref<HTMLElement | null>(null);
 

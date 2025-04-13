@@ -112,13 +112,11 @@
                 </a>
             </div>
         </div>
-
     </nav>
 </template>
 
 <script setup lang="ts">
-import gsap from 'gsap';
-import { ref, onMounted } from 'vue';
+const { $gsap: gsap } = useNuxtApp();
 
 const position = ref('close');
 const navigation = ref(null);

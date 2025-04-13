@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { hexToRgb } from '@/composables/misc'
-import gsap from 'gsap';
+const { $gsap: gsap } = useNuxtApp();
 
 const props = defineProps({
     title: {
