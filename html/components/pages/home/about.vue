@@ -10,7 +10,7 @@
             Une expertise complète et une approche globale pour la réussite durable de vos projets numériques.</p>
         <div class="about__image opacity-0 flex w-1/2 max-w-[400px] rounded-2xl bg-emerald-500 m-auto"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer">
-            <img src="/images/pages/home/about_jump.webp" alt="Lugh Web Logo"
+            <img src="/images/pages/homeAbout.webp" alt="Moi version cartoon 3D entrain de sauter"
                 class="m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
         </div>
         <div class="about__container__content w-full mt-10 md:mt-auto md:w-1/2">
