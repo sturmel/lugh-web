@@ -2,15 +2,15 @@
     <div class="relative flex flex-col min-h-screen max-w-[100vw] overflow-hidden">
       <NuxtLayout name="main" @scrollTo="scrollToSection">
   
-        <LazyPagesHeroShot class="mb-10" titleText="Optimisez vos opérations avec des outils métiers personnalisés :"
+        <LazySectionHeroShot class="mb-10" titleText="Optimisez vos opérations avec des outils métiers personnalisés :"
           bottomLineText="Développement de solutions logicielles pour une efficacité accrue"
           subtitleText="Simplifiez la gestion de vos données et améliorez vos processus internes sur mesure."
           imageUrl="/images/pages/tool.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
           @scrollTo="scrollToSection" />
   
   
-        <LazyPagesServices class="mb-10" id="services" />
-        <LazyPagesContact class="mb-10" id="contact" />
+        <LazySectionServices class="mb-10" id="services" />
+        <LazySectionContact class="mb-10" id="contact" />
   
       </NuxtLayout>
     </div>

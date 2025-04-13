@@ -52,7 +52,7 @@
                 </a>
             </div>
             <div class="m-auto ml-0 mr-10 2xl:mr-0 hidden md:flex">
-                <ButtonsOrange text="Me contacter" @click="scrollToContact" class=" m-auto ml-0 mr-5" />
+                <ButtonOrange text="Me contacter" @click="scrollToContact" class=" m-auto ml-0 mr-5" />
             </div>
             <LazyHamburger :position="position" @click="toggleMenu" class="m-auto md:ml-0 mr-10 flex 2xl:hidden" />
         </div>
@@ -94,7 +94,7 @@
                 </a>
             </div>
             <div class="m-auto w-full mt-5 flex md:hidden">
-                <ButtonsOrange text="Me contacter" @click="scrollToContact" class=" m-auto w-3/4" />
+                <ButtonOrange text="Me contacter" @click="scrollToContact" class=" m-auto w-3/4" />
             </div>
             <div class="m-auto mt-5 flex w-64">
                 <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"

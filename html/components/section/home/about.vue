@@ -48,7 +48,7 @@
                     différence.</p>
             </div>
             <div class="flex flex-wrap items-center justify-center w-full m-auto ml-0 mt-5">
-                <ButtonsOrange text="Me contacter" @click="emit('scrollTo', 'contact')"
+                <ButtonOrange text="Me contacter" @click="emit('scrollTo', 'contact')"
                     class="about__button m-auto ml-0 -translate-y-full opacity-0" />
             </div>
         </div>

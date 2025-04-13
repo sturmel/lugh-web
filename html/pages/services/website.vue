@@ -2,14 +2,14 @@
     <div class="relative flex flex-col min-h-screen max-w-[100vw] overflow-hidden">
       <NuxtLayout name="main" @scrollTo="scrollToSection">
   
-        <LazyPagesHeroShot class="mb-10" titleText="Une vitrine en ligne à votre image :"
+        <LazySectionHeroShot class="mb-10" titleText="Une vitrine en ligne à votre image :"
           bottomLineText="Création de sites web sur mesure, e-commerce et vitrines"
           subtitleText="Propulsez votre activité avec un site web professionnel, optimisé pour la performance et le référencement."
           imageUrl="/images/pages/webSite.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
           @scrollTo="scrollToSection" />
   
-        <LazyPagesServices class="mb-10" id="services" />
-        <LazyPagesContact class="mb-10" id="contact" />
+        <LazySectionServices class="mb-10" id="services" />
+        <LazySectionContact class="mb-10" id="contact" />
   
       </NuxtLayout>
     </div>

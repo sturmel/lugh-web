@@ -8,7 +8,7 @@
                 class="text-2xl m-auto mt-0 mb-0 ml-0 font-semibold text-tangerine-500 uppercase text-shadow-white  h-16 z-10">
                 {{ title }}</h3>
             <p class="text-xl m-auto mt-3 z-10"> {{ text }}</p>
-            <ButtonsBlueRedirect text="En savoir plus" href="/services"
+            <ButtonBlueRedirect text="En savoir plus" :href="redirectUrl"
                 class="card__service__button m-auto mt-5 md:mt-auto ml-0 mb-0 z-10 drop-shadow-[0rem_0rem_0.25rem_rgba(0,0,0,0.25)]"
                 ref="button" />
 
@@ -34,6 +34,10 @@ const props = defineProps({
         required: true,
     },
     imageUrl: {
+        type: String,
+        required: true,
+    },
+    redirectUrl: {
         type: String,
         required: true,
     },

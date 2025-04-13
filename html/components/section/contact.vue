@@ -31,7 +31,7 @@
                 <textarea placeholder="Message"
                     class="contact__form__textarea min-h-48 text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
                     v-model="message" />
-                <LazyButtonsBlue text="Envoyer votre message"
+                <LazyButtonBlue text="Envoyer votre message"
                     class="m-auto mt-5 !shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)]" />
             </form>
         </div>

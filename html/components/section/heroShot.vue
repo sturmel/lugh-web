@@ -16,10 +16,10 @@
             </div>
             <div class="flex flex-col lg:flex-row items-center justify-center w-full m-auto ml-0 mt-5">
                 <!--
-                <ButtonsBlue text="Découvrez mes services" @click="$emit('scrollTo', 'services')"
+                <ButtonBlue text="Découvrez mes services" @click="$emit('scrollTo', 'services')"
                     class="heroshot__button m-auto ml-0 lg:mr-5 -translate-y-full opacity-0" />
                     -->
-                <ButtonsOrange text="Me contacter" @click="$emit('scrollTo', 'contact')"
+                <ButtonOrange text="Me contacter" @click="$emit('scrollTo', 'contact')"
                     class="heroshot__button m-auto mt-5 ml-0 lg:mt-auto  -translate-y-full opacity-0" />
             </div>
         </div>
