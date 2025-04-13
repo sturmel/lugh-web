@@ -4,11 +4,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [    
-    //'@nuxt/eslint',
     '@nuxt/icon',
-    //'@nuxt/image',
-    //'@nuxt/test-utils/module',
-    'nuxt-particles'
+    'nuxt-particles',
+    '@nuxtjs/sitemap'
   ],
   css: ['~/assets/style/main.css'],
   vite: {
@@ -16,15 +14,18 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
     build: {
-      sourcemap: true, // Enable sourcemap generation
+      sourcemap: true, 
     },
+  },
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true   
+    }
   },
   particles: {
     mode: 'slim',
     lazy: true
-  },
-  devServer: {
-    port: 3000, // Set the development port here
   },
   icon: {
     serverBundle: {

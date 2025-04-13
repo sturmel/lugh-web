@@ -1,5 +1,5 @@
 <template>
-    <section class="relative heroshot w-full min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
+    <section class="relative heroshot w-full h-[calc(100vh-8rem)] min-h-[600px] flex flex-wrap-reverse md:flex-wrap m-auto mt-0 perspective-[1000px]"
         @mousemove="imageCardInteraction" ref="heroShotSection">
 
         <div class="flex flex-col items-center justify-center w-full mt-10 md:mt-auto md:w-1/2 h-full m-auto ml-0 z-20">
@@ -26,7 +26,6 @@
             <img src="/images/pages/home/heroshot.webp" alt="Mascote de l'agence qui saute" 
                 class="character m-auto h-full object-cover opacity-0 scale-95" ref="imageCharacter" />
         </div>
-
     </section>
 </template>
 
@@ -107,7 +106,7 @@ const onMouseLeave = () => {
 
 const imageCardAndButtonAppear = () => {
     if (!imageContainer.value || !heroShotSection.value) return;
-
+    
     const buttons = heroShotSection.value.querySelectorAll(".heroshot__button");
     const imageCharacter = heroShotSection.value.querySelector(".heroshot__image img.character");
 
@@ -194,43 +193,101 @@ const imageCardAndButtonHide = () => {
     });
 };
 
-const sectionVisibilityTrigger = () => {
-    if (!heroShotSection.value) return;
+const textScrollTrigger = (el: HTMLElement) => {
+    if (!el) return;
+    ScrollTrigger.create({
+        trigger: el,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+            showBlurText(el as HTMLElement, 0);
+        },
+        onEnterBack: () => {
+            showBlurText(el as HTMLElement, 0);
+        },
+        onLeave: () => {
+            hideBlurText(el as HTMLElement, 0);
+        },
+        onLeaveBack: () => {
+            hideBlurText(el as HTMLElement, 0);
+        }
+    });
+}
 
+const sectionVisibilityTrigger = () => {
+    if (!heroShotSection.value || !imageContainer.value) return;
+    const buttons = heroShotSection.value.querySelectorAll(".heroshot__button");
     const title = heroShotSection.value.querySelector(".heroshot__title");
     const bottomline = heroShotSection.value.querySelector(".heroshot__bottomline");
     const subtitle = heroShotSection.value.querySelector(".heroshot__subtitle");
 
     ScrollTrigger.create({
-        trigger: heroShotSection.value,
+        trigger: imageContainer.value,
         start: 'top 80%',
         end: 'bottom 20%',
         onEnter: () => {
             imageCardAndButtonAppear();
-            showBlurText(title as HTMLElement, 0);
-            showBlurText(bottomline as HTMLElement, 0.5);
-            showBlurText(subtitle as HTMLElement, 1);
         },
         onLeave: () => {
             imageCardAndButtonHide();
-            hideBlurText(title as HTMLElement, 1);
-            hideBlurText(bottomline as HTMLElement, 0.5);
-            hideBlurText(subtitle as HTMLElement, 0);
+
         },
         onEnterBack: () => {
             imageCardAndButtonAppear();
-            showBlurText(title as HTMLElement, 0);
-            showBlurText(bottomline as HTMLElement, 0.5);
-            showBlurText(subtitle as HTMLElement, 1);
         },
         onLeaveBack: () => {
             imageCardAndButtonHide();
-            hideBlurText(title as HTMLElement, 1);
-            hideBlurText(bottomline as HTMLElement, 0.5);
-            hideBlurText(subtitle as HTMLElement, 0);
         },
-
     });
+
+    textScrollTrigger(title as HTMLElement);
+    textScrollTrigger(bottomline as HTMLElement);
+    textScrollTrigger(subtitle as HTMLElement);
+
+    buttons.forEach((button, index: number) => {
+        ScrollTrigger.create({
+            trigger: button,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            onEnter: () => {
+                gsap.to(button, {
+                    duration: 0.5,
+                    opacity: 1,
+                    translateY: 0,
+                    ease: "power1.easeInOut",
+                    delay: 0.5 + index * 0.5,
+                });
+            },
+            onLeaveBack: () => {
+                gsap.to(button, {
+                    duration: 0.5,
+                    opacity: 0,
+                    translateY: "-1rem",
+                    ease: "power1.easeInOut",
+                    delay: 0.5 + index * 0.5,
+                });
+            },
+            onLeave: () => {
+                gsap.to(button, {
+                    duration: 0.5,
+                    opacity: 0,
+                    translateY: "-1rem",
+                    ease: "power1.easeInOut",
+                    delay: 0.5 + index * 0.5,
+                });
+            },
+            onEnterBack: () => {
+                gsap.to(button, {
+                    duration: 0.5,
+                    opacity: 1,
+                    translateY: 0,
+                    ease: "power1.easeInOut",
+                    delay: 0.5 + index * 0.5,
+                });
+            },
+        });
+    });
+
 };
 
 onMounted(() => {

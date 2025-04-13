@@ -16,12 +16,12 @@
         <div class="about__container__content w-full mt-10 md:mt-auto md:w-1/2">
             <div class="about__container__content__text flex flex-col w-full m-auto ml-0 mb-5 pointer-events-none"
                 ref="textContent">
-                <p class="text-xl mb-10 opacity-0 scale-105">Avec plus de 20 ans dédiés à
+                <p class="text-xl mb-10 blur-[15px] opacity-0">Avec plus de 20 ans dédiés à
                     l'informatique et une expertise forgée dès 2010 dans le monde du Bug Bounty,
                     la cybersécurité est au cœur de mon ADN professionnel. Ce parcours m'a permis de comprendre les
                     systèmes de l'intérieur pour mieux les construire et les protéger.</p>
 
-                <p class="text-xl mb-10 opacity-0 scale-105">J'ai mis cette expertise au service de la création web au
+                <p class="text-xl mb-10 blur-[15px] opacity-0">J'ai mis cette expertise au service de la création web au
                     fil de diverses
                     expériences : d'abord en tant
                     que freelance, puis en agence, où j'ai pu travailler sur une variété de projets. Mon parcours s'est
@@ -33,7 +33,8 @@
                     fournir
                     des solutions numériques efficaces, durables et sécurisées.
                 </p>
-                <p class="text-xl mb-10 opacity-0 scale-105">Aujourd'hui de retour en freelance, je mets à profit cette
+                <p class="text-xl mb-10 blur-[15px] opacity-0">Aujourd'hui de retour en freelance, je mets à profit
+                    cette
                     perspective globale
                     unique, combinant
                     expertise technique et vision stratégique acquise, pour donner vie à des projets innovants.
@@ -41,7 +42,7 @@
                     succès
                     de vos projets digitaux.
                 </p>
-                <p class="text-xl mb-10 opacity-0 scale-105">Prêt à discuter de votre projet ? Me contacter pour
+                <p class="text-xl mb-10 blur-[15px] opacity-0">Prêt à discuter de votre projet ? Me contacter pour
                     explorer comment mon
                     expertise peut faire la
                     différence.</p>
@@ -132,20 +133,10 @@ const onMouseLeave = () => {
     });
 };
 
-const imageCardAndButtonAndTextAppear = () => {
+const imageCardAppear = () => {
     if (!aboutSection.value || !imageContainer.value) return;
 
-    const button = aboutSection.value.querySelector(".about__button");
     const imageCharacter = aboutSection.value.querySelector(".about__image img");
-    const textContent = aboutSection.value.querySelector(".about__container__content__text");
-
-    gsap.to(button, {
-        duration: 0.5,
-        opacity: 1,
-        translateY: 0,
-        ease: "power1.easeInOut",
-        delay: 0.5,
-    });
 
     gsap.to(imageContainer.value, {
         duration: 0.5,
@@ -179,30 +170,40 @@ const imageCardAndButtonAndTextAppear = () => {
             });
         },
     });
+};
 
-    if (!textContent) return;
-    const paragraph = textContent.querySelectorAll("p");
 
-    paragraph.forEach((p: HTMLParagraphElement, index: number) => {
-        gsap.to(p, {
-            duration: 0.5,
-            opacity: 1,
-            scale: 1,
-            rotateX: `0deg`,
-            translateY: `0rem`,
-            delay: 0.5 + index * 0.5,
-            ease: "power1.inOut",
-        });
+const buttonAppear = () => {
+    if (!aboutSection.value || !imageContainer.value) return;
+    const button = aboutSection.value.querySelector(".about__button");
+
+    gsap.to(button, {
+        duration: 0.5,
+        opacity: 1,
+        translateY: 0,
+        ease: "power1.easeInOut",
+        delay: 0.5,
     });
 };
 
-const imageCardAndButtonAndTextHide = () => {
+const buttonHide = () => {
+    if (!aboutSection.value || !imageContainer.value) return;
+    const button = aboutSection.value.querySelector(".about__button");
+
+    gsap.to(button, {
+        duration: 0.5,
+        opacity: 0,
+        translateY: "-1rem",
+        ease: "power1.easeInOut",
+        delay: 0.5,
+    });
+};
+
+const imageCardHide = () => {
     if (!aboutSection.value) return;
 
     const imageContainer = aboutSection.value.querySelector(".about__image");
-    const imageCharacter = aboutSection.value.querySelector(".about__image img");
-    const button = aboutSection.value.querySelector(".about__button");
-    const textContent = aboutSection.value.querySelector(".about__container__content__text");
+    const imageCharacter = aboutSection.value.querySelector(".about__image img");   
 
     gsap.to(imageCharacter, {
         duration: 0.5,
@@ -224,60 +225,98 @@ const imageCardAndButtonAndTextHide = () => {
         boxShadow: `0rem 0rem 0rem rgba(0, 0, 0, 0), 0rem 0rem 0rem rgba(255, 255, 255, 0) inset, 0rem 0rem 0rem rgba(0, 0, 0, 0) inset`,
     });
 
-    if (!textContent) return;
-    const paragraph = textContent.querySelectorAll("p");
-
-    paragraph.forEach((p: HTMLParagraphElement, index: number) => {
-        gsap.to(p, {
-            duration: 0.5,
-            opacity: 0,
-            scale: 1.05,
-            delay: 0.5 + index * 0.5,
-            ease: "power1.inOut",
-        });
-    });
-
-    gsap.to(button, {
-        duration: 0.5,
-        opacity: 0,
-        translateY: "-1rem",
-        ease: "power1.easeInOut",
-        delay: 0.5,
-    });
-
 };
 
-const sectionVisibilityTrigger = () => {
-    if (!aboutSection.value) return;
-    const title = aboutSection.value.querySelector(".about__title");
-    const bottomline = aboutSection.value.querySelector(".about__bottomline");
-
+const textScrollTrigger = (el: HTMLElement) => {
+    if (!el) return;
     ScrollTrigger.create({
-        trigger: aboutSection.value,
+        trigger: el,
         start: 'top 80%',
         end: 'bottom 20%',
         onEnter: () => {
-            imageCardAndButtonAndTextAppear();
-            showBlurText(title as HTMLElement, 0);
-            showBlurText(bottomline as HTMLElement, 0.5);
-        },
-        onLeave: () => {
-            imageCardAndButtonAndTextHide();
-            hideBlurText(title as HTMLElement, 0);
-            hideBlurText(bottomline as HTMLElement, 0.5);
+            showBlurText(el as HTMLElement, 0);
         },
         onEnterBack: () => {
-            imageCardAndButtonAndTextAppear();
-            showBlurText(title as HTMLElement, 0);
-            showBlurText(bottomline as HTMLElement, 0.5);
+            showBlurText(el as HTMLElement, 0);
+        },
+        onLeave: () => {
+            hideBlurText(el as HTMLElement, 0);
         },
         onLeaveBack: () => {
-            imageCardAndButtonAndTextHide();
-            hideBlurText(title as HTMLElement, 0);
-            hideBlurText(bottomline as HTMLElement, 0.5);
+            hideBlurText(el as HTMLElement, 0);
+        }
+    });
+}
+
+const sectionVisibilityTrigger = () => {
+    if (!aboutSection.value) return;
+    const imageContainer = aboutSection.value.querySelector(".about__image")
+    const title = aboutSection.value.querySelector(".about__title");
+    const bottomline = aboutSection.value.querySelector(".about__bottomline");
+    const textContent = aboutSection.value.querySelector(".about__container__content__text");
+    const button = aboutSection.value.querySelector(".about__button");
+
+
+    ScrollTrigger.create({
+        trigger: imageContainer,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+            imageCardAppear();
+        },
+        onLeave: () => {
+            imageCardHide();
+        },
+        onEnterBack: () => {
+            imageCardAppear();
+        },
+        onLeaveBack: () => {
+            imageCardHide();
         },
     });
 
+    textScrollTrigger(title as HTMLElement);
+    textScrollTrigger(bottomline as HTMLElement);
+
+    ScrollTrigger.create({
+        trigger: button,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+            buttonAppear();
+        },
+        onEnterBack: () => {
+            buttonAppear();
+        },
+        onLeave: () => {
+            buttonHide();
+        },
+        onLeaveBack: () => {
+            buttonHide();
+        }
+    });
+
+    if (!textContent) return;
+    const paragraph = textContent.querySelectorAll("p");
+    paragraph.forEach((p: HTMLParagraphElement, index: number) => {
+        ScrollTrigger.create({
+            trigger: p,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            onEnter: () => {
+                showBlurText(p as HTMLElement, 0 + index * 0.1);
+            },
+            onEnterBack: () => {
+                showBlurText(p as HTMLElement, 0 + index * 0.1);
+            },
+            onLeave: () => {
+                hideBlurText(p as HTMLElement, 0);
+            },
+            onLeaveBack: () => {
+                hideBlurText(p as HTMLElement, 0);
+            }
+        });
+    });
 }
 
 onMounted(() => {

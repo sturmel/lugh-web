@@ -64,26 +64,54 @@ const sectionVisibilityTrigger = () => {
             end: 'bottom 20%',
             onEnter: () => {
                 showCardEl(card as HTMLElement);
-                showBlurText(title as HTMLElement, 0);
-                showBlurText(bottomline as HTMLElement, 0.5);
             },
             onEnterBack: () => {
                 showCardEl(card as HTMLElement);
-                showBlurText(title as HTMLElement, 0);
-                showBlurText(bottomline as HTMLElement, 0.5);
             },
             onLeave: () => {
                 hideCardEl(card as HTMLElement);
-                hideBlurText(title as HTMLElement, 0);
-                hideBlurText(bottomline as HTMLElement, 0.5);
-
             },
             onLeaveBack: () => {
                 hideCardEl(card as HTMLElement);
-                hideBlurText(title as HTMLElement, 0);
-                hideBlurText(bottomline as HTMLElement, 0.5);
             }
         });
+    });
+
+    ScrollTrigger.create({
+        trigger: title,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+            showBlurText(title as HTMLElement, 0);
+        },
+        onEnterBack: () => {
+            showBlurText(title as HTMLElement, 0);
+        },
+        onLeave: () => {
+            hideBlurText(title as HTMLElement, 0);
+        },
+        onLeaveBack: () => {
+            hideBlurText(title as HTMLElement, 0);
+
+        }
+    });
+
+    ScrollTrigger.create({
+        trigger: bottomline,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+            showBlurText(bottomline as HTMLElement, 0);
+        },
+        onEnterBack: () => {
+            showBlurText(bottomline as HTMLElement, 0);
+        },
+        onLeave: () => {
+            hideBlurText(bottomline as HTMLElement, 0);
+        },
+        onLeaveBack: () => {
+            hideBlurText(bottomline as HTMLElement, 0);
+        }
     });
 };
 
