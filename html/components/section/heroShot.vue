@@ -4,15 +4,15 @@
         @mousemove="imageCardInteraction" ref="heroShotSection">
 
         <div class="flex flex-col items-center justify-center w-full mt-10 md:mt-auto md:w-1/2 h-full m-auto ml-0 z-20">
-            <div class="relative flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
+            <div class="relative flex flex-col w-full m-auto ml-0 mb-5 pointer-events-none">
                 <h3
-                    class="heroshot__title text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    class="heroshot__title text-5xl sm:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                     {{ titleText }}</h3>
                 <h1
-                    class="heroshot__bottomline text-4xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    class="heroshot__bottomline text-4xl sm:text-4xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                     {{ bottomLineText }}</h1>
                 <h2
-                    class="heroshot__subtitle text-2xl text-tangerine-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
+                    class="heroshot__subtitle text-xl sm:text-2xl text-tangerine-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 text-shadow-md text-shadow-white/25">
                     {{ subtitleText }}</h2>
             </div>
             <div class="flex flex-col lg:flex-row items-center justify-center w-full m-auto ml-0 mt-5">

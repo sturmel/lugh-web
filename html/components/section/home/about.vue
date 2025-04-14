@@ -2,11 +2,11 @@
     <section class="relative flex flex-wrap about perspective-[1000px] py-10" @mousemove="imageCardInteraction"
         ref="aboutSection">
         <h2
-            class="about__title order-1 w-full text-5xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+            class="about__title order-1 w-full text-4xl sm:text-5xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
             {{ titleText }}
         </h2>
         <p
-            class="about__bottomline order-2 w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
+            class="about__bottomline order-2 w-full text-tangerine-500 blur-[15px] opacity-0 text-3xl sm:text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             {{ subtitleText }}</p>
 
 

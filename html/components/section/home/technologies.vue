@@ -2,12 +2,12 @@
     <section class="technologies flex flex-col items-center justify-center w-full h-full perspective-[1000px]"
         ref="technologiesSection">
         <h2
-            class="technologies__title text-egyptian-blue-500 blur-[15px] opacity-0 w-full text-5xl m-auto ml-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
+            class="technologies__title text-egyptian-blue-500 blur-[15px] opacity-0 w-full text-4xl sm:text-5xl m-auto ml-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             Un arsenal de technologies au service de vos ambitions digitales.
         </h2>
         <div class="flex flex-col items-center justify-center w-full h-full mb-14">
             <h3
-                class="technologies__subtitle text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="technologies__subtitle text-tangerine-500 blur-[15px] opacity-0 text-3xl sm:text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 CMS : Des fondations solides pour votre contenu</h3>
             <p class="text-xl technologies__description text-black blur-[15px] opacity-0">J'exploite des systèmes de
                 gestion de contenu
