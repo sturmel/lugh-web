@@ -1,5 +1,5 @@
 <template>
-    <section class="relative flex flex-wrap about perspective-[1000px] py-10" @mousemove="imageCardInteraction"
+    <section class="relative flex flex-wrap perspective-[1000px] py-10" @mousemove="imageCardInteraction"
         ref="textImageContainerSection">
         <h2
             class="image_text_container__title order-1 w-full text-5xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
@@ -130,7 +130,7 @@ const onMouseLeave = () => {
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
         transform: `translateZ(0)`,
-        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
+        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.1), ' + 4 * imageOffsetMultiplicator * positionMultiplicator+ 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
@@ -139,7 +139,7 @@ const onMouseLeave = () => {
         translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
         translateY: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
         translateX: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
+        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator  + 'rem 2rem rgba(0, 0, 0, 0.5))',
     });
 };
 
@@ -166,7 +166,7 @@ const imageCardAppear = () => {
                         translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
                         translateY: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
                         translateX: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-                        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
+                        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator  + 'rem 2rem rgba(0, 0, 0, 0.5))',
                     });
                     gsap.to(imageContainer.value, {
                         duration: 0.5,
@@ -174,7 +174,7 @@ const imageCardAppear = () => {
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
+                        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.1), ' + 4 * imageOffsetMultiplicator * positionMultiplicator+ 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
                     });
                 },
             });
