@@ -33,7 +33,7 @@
         imageColorBgClass="bg-egyptian-blue-500" />
 
         <LazyContainerImageText class="mb-10" imagePosition="right"
-        titleText="Lancement et suivi : votre site est en ligne, l'accompagnement continue"
+        titleText="Lancement et suivi : votre site est en ligne, l'assistance continue."
         subtitleText="Mise en ligne réussie et support pour l'évolution de votre présence web." :text="[
           'Après votre validation, je procède au lancement de votre site web. Je m\'assure que tout se déroule correctement et que votre présence en ligne est effective.',
           'Je peux également vous proposer des services de maintenance, de mises à jour et de support technique pour garantir la pérennité et l\'évolution de votre site web dans le temps. Je reste à votre disposition pour toute question ou besoin futur.'
