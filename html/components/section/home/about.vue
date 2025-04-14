@@ -2,7 +2,7 @@
     <section class="relative flex flex-wrap about perspective-[1000px] py-10" @mousemove="imageCardInteraction"
         ref="aboutSection">
         <h2
-            class="about__title order-1 w-full text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+            class="about__title order-1 w-full text-5xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
             {{ titleText }}
         </h2>
         <p

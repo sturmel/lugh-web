@@ -2,7 +2,7 @@
     <section class="services flex flex-col items-center justify-center w-full h-full" ref="servicesSection">
         <div class="flex flex-col items-center justify-center w-full h-full mb-14">
             <h2
-                class="services__title text-egyptian-blue-500 blur-[15px] opacity-0 text-5xl lg:text-6xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                class="services__title text-egyptian-blue-500 blur-[15px] opacity-0 text-5xl m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                 Expertise digitale à votre service : innovons ensemble !</h2>
             <p
                 class="services__bottomline text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">

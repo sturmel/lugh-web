@@ -2,23 +2,21 @@
     <section class="relative flex flex-wrap about perspective-[1000px] py-10" @mousemove="imageCardInteraction"
         ref="textImageContainerSection">
         <h2
-            class="image_text_container__title order-1 w-full text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+            class="image_text_container__title order-1 w-full text-5xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
             {{ titleText }}
         </h2>
         <p
             class="image_text_container__bottomline order-2 w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             {{ subtitleText }}</p>
-
-
-        <div class="image_text_container__image scale-95 opacity-0 flex w-2/3 md:w-1/2 min-w-[250px] max-w-[550px] max-h-[550px] rounded-2xl m-auto"
+        <div class="image_text_container__image scale-95 opacity-0 flex w-2/3 md:w-1/2 min-w-[250px] max-w-[350px] max-h-[350px] rounded-2xl m-auto"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer"
-            :class="[imageColorBgClass, imagePosition === 'left' ? 'order-3' : 'order-4']">
+            :class="[imageColorBgClass, imagePosition === 'left' ? 'order-3 md:order-3' : 'order-3 md:order-4']">
             <img :src="imageUrl" :alt="imageAlt" class="m-auto h-full object-cover opacity-0 scale-95"
                 ref="imageCharacter" />
         </div>
 
-        <div class="image_text_container__container__content w-full mt-10 md:mt-auto md:w-1/2 "
-            :class="imagePosition === 'left' ? 'order-4 md:ml-auto' : 'order-3 md:mr-auto'">
+        <div class="image_text_container__container__content w-full m-auto mt-10 md:mt-auto md:w-1/2 "
+            :class="imagePosition === 'left' ? 'order-4 md:order-4 md:ml-auto' : 'order-4 md:order-3 md:mr-auto'">
             <div class="image_text_container__container__content__text flex flex-col w-full m-auto ml-0 mb-5 pointer-events-none"
                 ref="textContent">
                 <p v-for="(p, index) in text" :key="index" class="text-xl mb-5 blur-[15px] opacity-0">
@@ -132,15 +130,15 @@ const onMouseLeave = () => {
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
         transform: `translateZ(0)`,
-        boxShadow: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
+        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
-        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
-        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
-        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
+        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
+        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
+        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
         filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
     });
 };
@@ -165,10 +163,10 @@ const imageCardAppear = () => {
                         rotateY: (10 * positionMultiplicator) + 'deg',
                         rotateX: `0deg`,
                         scale: 1,
-                        translateZ: '2rem',
-                        translateY: '1rem',
-                        translateX: '1rem',
-                        filter: 'drop-shadow(' + (-4 * positionMultiplicator) + 'rem 4rem 2rem rgba(0, 0, 0, 0.5))',
+                        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
+                        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
+                        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
+                        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
                     });
                     gsap.to(imageContainer.value, {
                         duration: 0.5,
@@ -176,7 +174,7 @@ const imageCardAppear = () => {
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: (-1 * positionMultiplicator) + 'rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset',
+                        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
                     });
                 },
             });
@@ -295,7 +293,11 @@ const setResolutionVariablesAndImageSize = () => {
         textElementHeight = (textImageContainerSection.value?.querySelector(
             ".image_text_container__container__content"
         ) as HTMLElement)?.offsetHeight || 0;
-        setImageHeight();
+        let height = setImageHeight();
+        if ((height ?? 0) < 300) {
+            imageOffsetMultiplicator = 0.5;
+        }
+
     }
 };
 
@@ -305,6 +307,8 @@ const setImageHeight = () => {
         textElementHeight + 50 + "px";
     imageContainer.value.style.width =
         textElementHeight + 50 + "px";
+
+    return imageContainer.value.offsetHeight;
 };
 
 onMounted(() => {

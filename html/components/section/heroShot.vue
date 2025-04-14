@@ -6,7 +6,7 @@
         <div class="flex flex-col items-center justify-center w-full mt-10 md:mt-auto md:w-1/2 h-full m-auto ml-0 z-20">
             <div class="relative flex flex-col w-full m-auto ml-0  mb-5 pointer-events-none">
                 <h3
-                    class="heroshot__title text-5xl lg:text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
+                    class="heroshot__title text-6xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
                     {{ titleText }}</h3>
                 <h1
                     class="heroshot__bottomline text-4xl text-egyptian-blue-500 blur-[15px] opacity-0 m-auto ml-0 mt-0 mb-5 font-bold text-shadow-md text-shadow-white/25">
