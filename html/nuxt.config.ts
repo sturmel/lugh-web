@@ -50,15 +50,5 @@ export default defineNuxtConfig({
     public: {
       websiteUrl: process.env.WEBSITE_URL
     }
-  },
-  app: {
-    head: {
-      meta: [
-        {
-          name: 'http-equiv',
-          content: 'Content-Security-Policy',
-        },
-      ],
-    },
   }
 })
