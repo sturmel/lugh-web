@@ -16,24 +16,31 @@
                 projet et vos besoins via le formulaire.</p>
         </div>
 
-        <div class="contact__form opacity-0 flex flex-col items-center  justify-center w-full lg:w-1/2 max-w-[700px] m-auto lg:p-10 rounded-2xl">
-
-            <form class="flex flex-col items-center justify-center w-full m-auto " @submit.prevent="sendMail">
+        <div
+            class="contact__container relative flex flex-col items-center  justify-center w-full lg:w-1/2 max-w-[700px] m-auto lg:p-10 rounded-2xl">
+            <form
+                class="contact__container__form z-10 opacity-0 flex flex-col items-center justify-center w-full m-auto "
+                @submit.prevent="sendMail">
                 <input type="text" placeholder="Nom et prénom"
-                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
-                    v-model="name" />
+                    class="contact__container__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
+                    @input="fillCheck" v-model="name" />
                 <input type="email" placeholder="Email"
-                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
-                    v-model="email" />
+                    class="contact__container__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
+                    @input="fillCheck" v-model="email" />
                 <input type="text" placeholder="Téléphone"
-                    class="contact__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
-                    v-model="phone" />
+                    class="contact__container__form__input text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
+                    @input="fillCheck" v-model="phone" />
                 <textarea placeholder="Message"
-                    class="contact__form__textarea min-h-48 text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
-                    v-model="message" />
-                <LazyButtonBlue text="Envoyer votre message"
+                    class="contact__container__form__textarea min-h-48 text-xl mb-4 w-full shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2 bg-white focus:outline-none focus:border-2 focus:border-emerald-500"
+                    @input="fillCheck" v-model="message" />
+                <LazyButtonBlue text="Envoyer votre message" :class="formButtonSubmitClass"
                     class="m-auto mt-5 !shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)]" />
             </form>
+            <div
+                class="z-0 contact__container__form__response opacity-0 absolute bg-white w-full max-w-[600px] shadow-[0.5rem_0.5rem_1rem_rgba(0,0,0,0.15)] border  border-french-gray-500 rounded-lg p-2">
+                <p class="text-2xl text-center">Votre message a été réceptionné avec succès. Je prendrai contact avec
+                    vous très prochainement.</p>
+            </div>
         </div>
     </section>
 </template>
@@ -48,13 +55,14 @@ const name = ref('');
 const email = ref('');
 const phone = ref('');
 const message = ref('');
+const formButtonSubmitClass = ref('opacity-50 pointer-events-none');
 
 const sectionVisibilityTrigger = () => {
     if (!contactSection.value) return;
     const title = contactSection.value.querySelector(".contact__title");
     const bottomline = contactSection.value.querySelector(".contact__bottomline");
     const subtitle = contactSection.value.querySelector(".contact__subtitle");
-    const form = contactSection.value.querySelector(".contact__form");
+    const form = contactSection.value.querySelector(".contact__container__form");
 
     ScrollTrigger.create({
         trigger: contactSection.value,
@@ -87,7 +95,19 @@ const sectionVisibilityTrigger = () => {
     });
 };
 
+const fillCheck = () => {
+    if (name.value && email.value && phone.value && message.value) {
+        formButtonSubmitClass.value = 'opacity-100 pointer-events-auto';
+    } else {
+        formButtonSubmitClass.value = 'opacity-50 pointer-events-none';
+    }
+};
 const sendMail = async () => {
+    if (!contactSection.value) return;
+    const formEl = contactSection.value.querySelector(".contact__container__form");
+    const responseEl = contactSection.value.querySelector(".contact__container__form__response");
+
+
     try {
         const emailData = {
             name: name.value,
@@ -109,9 +129,26 @@ const sendMail = async () => {
             throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        console.log('Email sent successfully:', data);
+        gsap.set(formEl, {
+            zIndex: 0,
+        });
 
+        gsap.set(responseEl, {
+            zIndex: 10,
+        });
+
+        gsap.to(formEl, {
+            duration: 0.5,
+            opacity: 0,
+            ease: "power2.inOut",
+            onComplete: () => {
+                gsap.set(responseEl, {
+                    duration: 0.5,
+                    opacity: 1,
+                    ease: "power2.inOut",
+                });
+            }
+        });
 
         name.value = '';
         email.value = '';
@@ -120,16 +157,15 @@ const sendMail = async () => {
 
     } catch (error: any) {
         console.error('Error sending email:', error.message);
-
     }
 };
 
 onMounted(() => {
     sectionVisibilityTrigger();
     gsap.set(".contact__form", {
-            opacity: 0,
-            translateY: "25%",
-            scale: 1.05,
-        });
+        opacity: 0,
+        translateY: "25%",
+        scale: 1.05,
+    });
 });
 </script>

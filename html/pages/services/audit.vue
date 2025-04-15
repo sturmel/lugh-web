@@ -8,6 +8,38 @@
         imageUrl="/images/pages/audit.webp" imageAlt="Moi version cartoon 3D entrain de sauter"
         serviceButtonText="Découvrez mes autres services" imageColorBgClass="bg-egyptian-blue-500" @scrollTo="scrollToSection" />
 
+        <LazyContainerImageText class="mb-10" imagePosition="left"
+        titleText="Définition du périmètre, objectifs et cahier des charges : je clarifie les enjeux de la sécurité"
+        subtitleText="Je définis les contours de votre audit de sécurité." :text="[
+          'Je commence par une discussion pour comprendre vos préoccupations en matière de sécurité, identifier les actifs critiques de votre système d\'information et définir les objectifs spécifiques de l\'audit.',
+          'Ces éléments sont ensuite formalisés dans un cahier des charges d\'audit. Ce document précisera le périmètre de l\'audit, les méthodologies utilisées, les livrables attendus et le calendrier des interventions.'
+        ]" imageUrl="/images/pages/note.webp" imageAlt="Moi version cartoon 3D entrain de prendre des notes"
+        imageColorBgClass="bg-emerald-500" />
+
+        <LazyContainerImageText class="mb-10" imagePosition="right"
+        titleText="Collecte d'informations et analyse initiale : je comprends votre infrastructure existante"
+        subtitleText="Recueil des données nécessaires à une analyse approfondie de votre sécurité." :text="[
+          'Je procède à la collecte d\'informations sur votre infrastructure informatique, vos politiques de sécurité, vos procédures et les outils de sécurité en place. Cette phase d\'analyse initiale permet de dresser un état des lieux de votre sécurité actuelle.',
+          'Les informations recueillies sont essentielles pour préparer les étapes d\'analyse plus approfondies et les éventuels tests techniques.'
+        ]" imageUrl="/images/pages/design.webp" imageAlt="Moi version cartoon 3D entrain de créé l'architecture"
+        imageColorBgClass="bg-tangerine-500" />
+
+        <LazyContainerImageText class="mb-10" imagePosition="left"
+        titleText="Analyse approfondie et tests : j'identifie les vulnérabilités potentielles"
+        subtitleText="Examen minutieux de votre système pour détecter les failles de sécurité." :text="[
+          'Je réalise une analyse technique détaillée de votre système d\'information, incluant potentiellement des tests d\'intrusion non destructifs pour identifier les vulnérabilités. L\'objectif est de simuler des attaques pour évaluer la résistance de votre système.',
+          'Ces tests sont réalisés dans le respect des meilleures pratiques et conformément au protocole défini dans le cahier des charges.'
+        ]" imageUrl="/images/pages/code.webp" imageAlt="Moi version cartoon 3D entrain de coder"
+        imageColorBgClass="bg-egyptian-blue-500" />
+
+        <LazyContainerImageText class="mb-10" imagePosition="right"
+        titleText="Rapport et recommandations : je propose des actions concrètes pour renforcer votre sécurité"
+        subtitleText="Un rapport détaillé et des conseils personnalisés pour améliorer votre posture de sécurité." :text="[
+          'Je vous fournis un rapport détaillé des findings de l\'audit, mettant en évidence les vulnérabilités identifiées et les risques associés. Ce rapport inclut des recommandations claires et prioritaires pour renforcer la sécurité de votre système d\'information.',
+          'Les recommandations sont adaptées à votre contexte spécifique et visent à améliorer durablement votre posture de sécurité.'
+        ]" imageUrl="/images/pages/presentation.webp" imageAlt="Moi version cartoon 3D entrain de présenter le résultat"
+        imageColorBgClass="bg-emerald-500" />
+
 
       <LazySectionServices class="mb-10" id="services" />
       <LazySectionContact class="mb-10" id="contact" />
