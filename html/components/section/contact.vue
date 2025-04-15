@@ -142,10 +142,15 @@ const sendMail = async () => {
             opacity: 0,
             ease: "power2.inOut",
             onComplete: () => {
-                gsap.set(responseEl, {
+                gsap.to(responseEl, {
                     duration: 0.5,
                     opacity: 1,
                     ease: "power2.inOut",
+                    onComplete: () => {
+                        gsap.set(formEl, {
+                            display: 'none',
+                        });
+                    },
                 });
             }
         });
