@@ -133,21 +133,23 @@ const onMouseLeave = () => {
 
     if (!imageContainer.value || !imageCharacter.value) return;
 
+    gsap.to(imageCharacter, {
+        duration: 0.5,
+        rotateY: (10 * positionMultiplicator) + 'deg',
+        rotateX: `0deg`,
+        scale: 1,
+        translateZ: '2rem',
+        translateY: '1rem',
+        translateX: '1rem',
+        filter: 'drop-shadow(' + (-4 * positionMultiplicator) + 'rem 4rem 2rem rgba(0, 0, 0, 0.5))',
+    });
     gsap.to(imageContainer.value, {
         duration: 0.5,
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
+        scale: 1,
         transform: `translateZ(0)`,
-        boxShadow: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
-    });
-    gsap.to(imageCharacter.value, {
-        duration: 0.5,
-        rotateY: (10 * positionMultiplicator) + 'deg',
-        rotateX: `0deg`,
-        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
-        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
-        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator+ 'rem',
-        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
+        boxShadow: (-1 * positionMultiplicator) + 'rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
 };
 

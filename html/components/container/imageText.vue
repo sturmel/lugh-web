@@ -8,7 +8,8 @@
         <p
             class="image_text_container__bottomline order-2 w-full text-tangerine-500 blur-[15px] opacity-0 text-4xl  m-auto ml-0 mt-0 mb-15 font-bold text-shadow-md text-shadow-white/25">
             {{ subtitleText }}</p>
-        <div class="image_text_container__image scale-95 opacity-0 flex w-2/3 md:w-1/2 min-w-[250px] max-w-[350px] max-h-[350px] rounded-2xl m-auto"
+            <p class="w-full"></p>
+        <div class="image_text_container__image scale-95 opacity-0 flex w-2/3 md:w-1/2 min-w-[250px] max-w-[350px] max-h-[350px]  rounded-2xl m-auto"
             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" ref="imageContainer"
             :class="[imageColorBgClass, imagePosition === 'left' ? 'order-3 md:order-3' : 'order-3 md:order-4']">
             <img :src="imageUrl" :alt="imageAlt" class="m-auto h-full object-cover opacity-0 scale-95"
@@ -79,8 +80,6 @@ if (props.imagePosition === "right") {
     positionMultiplicator = -1;
 }
 
-let imageOffsetMultiplicator = 1;
-
 let textElementHeight = 0;
 
 
@@ -100,19 +99,19 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
 
     gsap.to(imageContainer.value, {
         duration: 0.5,
-        rotateY: `${x * 15 * imageOffsetMultiplicator}deg`,
-        rotateX: `${y * 15 * -1 * imageOffsetMultiplicator}deg`,
+        rotateY: `${x * 15}deg`,
+        rotateX: `${y * 15 * -1}deg`,
         transform: `translateZ(${y * 2}rem)`,
-        boxShadow: `${x * -2 * imageOffsetMultiplicator}rem ${y * -2 * imageOffsetMultiplicator}rem 1rem rgba(0, 0, 0, 0.25), ${x * 4 * imageOffsetMultiplicator}rem ${y * 4 * imageOffsetMultiplicator}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -4 * imageOffsetMultiplicator}rem ${y * -4 * imageOffsetMultiplicator}rem 5rem rgba(0, 0, 0, 0.2) inset`,
+        boxShadow: `${x * -2}rem ${y * -2}rem 1rem rgba(0, 0, 0, 0.25), ${x * 4}rem ${y * 4}rem 5rem rgba(255, 255, 255, 0.2) inset, ${x * -4}rem ${y * -4}rem 5rem rgba(0, 0, 0, 0.2) inset`,
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: `${x * 15}deg`,
         rotateX: `${y * 15 * -1}deg`,
-        translateZ: y * 2 * imageOffsetMultiplicator + 'rem',
-        translateY: `${y * 5 * imageOffsetMultiplicator}rem`,
-        translateX: `${x * 5 * imageOffsetMultiplicator}rem`,
-        filter: `drop-shadow(${x * -4 * imageOffsetMultiplicator}rem ${y * -4 * imageOffsetMultiplicator}rem 2rem rgba(0, 0, 0, 0.5))`,
+        translateZ: y * 2 + 'rem',
+        translateY: `${y * 5}rem`,
+        translateX: `${x * 5}rem`,
+        filter: `drop-shadow(${x * -4}rem ${y * -4}rem 2rem rgba(0, 0, 0, 0.5))`,
     });
 };
 
@@ -130,16 +129,16 @@ const onMouseLeave = () => {
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
         transform: `translateZ(0)`,
-        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.1), ' + 4 * imageOffsetMultiplicator * positionMultiplicator+ 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
+        boxShadow: -2 * positionMultiplicator + 'rem ' + 2 + 'rem ' + 1 + 'rem rgba(0, 0, 0, 0.1), ' + 4 * positionMultiplicator+ 'rem ' + -4 + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * positionMultiplicator + 'rem ' + 4 + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
-        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator  + 'rem 2rem rgba(0, 0, 0, 0.5))',
+        translateZ: 2 * positionMultiplicator + 'rem',
+        translateY: -1 * positionMultiplicator + 'rem',
+        translateX: -1 * positionMultiplicator + 'rem',
+        filter: 'drop-shadow(' + -4 * positionMultiplicator + 'rem ' + 4  + 'rem 2rem rgba(0, 0, 0, 0.5))',
     });
 };
 
@@ -163,10 +162,10 @@ const imageCardAppear = () => {
                         rotateY: (10 * positionMultiplicator) + 'deg',
                         rotateX: `0deg`,
                         scale: 1,
-                        translateZ: 2 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-                        translateY: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-                        translateX: -1 * imageOffsetMultiplicator * positionMultiplicator + 'rem',
-                        filter: 'drop-shadow(' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator  + 'rem 2rem rgba(0, 0, 0, 0.5))',
+                        translateZ: 2 * positionMultiplicator + 'rem',
+                        translateY: -1 * positionMultiplicator + 'rem',
+                        translateX: -1 * positionMultiplicator + 'rem',
+                        filter: 'drop-shadow(' + -4 * positionMultiplicator + 'rem ' + 4  + 'rem 2rem rgba(0, 0, 0, 0.5))',
                     });
                     gsap.to(imageContainer.value, {
                         duration: 0.5,
@@ -174,7 +173,7 @@ const imageCardAppear = () => {
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: -2 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.1), ' + 4 * imageOffsetMultiplicator * positionMultiplicator+ 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator * positionMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
+                        boxShadow: -2 * positionMultiplicator + 'rem ' + 2 + 'rem ' + 1 + 'rem rgba(0, 0, 0, 0.1), ' + 4 * positionMultiplicator+ 'rem ' + -4 + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * positionMultiplicator + 'rem ' + 4 + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
                     });
                 },
             });
@@ -285,19 +284,13 @@ const sectionVisibilityTrigger = () => {
 const setResolutionVariablesAndImageSize = () => {
     if (!textImageContainerSection.value || !imageContainer.value) return;
     if (window.innerWidth < 768) {
-        imageOffsetMultiplicator = 0.5;
         imageContainer.value.style.height = "";
         imageContainer.value.style.width = "";
     } else {
-        imageOffsetMultiplicator = 1;
         textElementHeight = (textImageContainerSection.value?.querySelector(
             ".image_text_container__container__content"
         ) as HTMLElement)?.offsetHeight || 0;
-        let height = setImageHeight();
-        if ((height ?? 0) < 300) {
-            imageOffsetMultiplicator = 0.5;
-        }
-
+        setImageHeight();
     }
 };
 
@@ -307,8 +300,6 @@ const setImageHeight = () => {
         textElementHeight + 50 + "px";
     imageContainer.value.style.width =
         textElementHeight + 50 + "px";
-
-    return imageContainer.value.offsetHeight;
 };
 
 onMounted(() => {
