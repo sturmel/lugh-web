@@ -115,8 +115,8 @@ const imageCardInteraction = (mouseEvent: MouseEvent) => {
     });
     gsap.to(imageCharacter.value, {
         duration: 0.5,
-        rotateY: `${x * 15}deg`,
-        rotateX: `${y * 15 * -1}deg`,
+        rotateY: `${x * 15 * imageOffsetMultiplicator}deg`,
+        rotateX: `${y * 15 * -1 * imageOffsetMultiplicator}deg`,
         translateZ: y * 2 * imageOffsetMultiplicator + 'rem',
         translateY: `${y * 5 * imageOffsetMultiplicator}rem`,
         translateX: `${x * 5 * imageOffsetMultiplicator}rem`,
@@ -130,18 +130,20 @@ const onMouseEnter = () => {
 
 const onMouseLeave = () => {
     isHovered.value = false;
-
+    console.log("mouseleave");
+    console.log(imageContainer.value);
+    console.log(imageCharacter.value);
     if (!imageContainer.value || !imageCharacter.value) return;
 
-    gsap.to(imageCharacter, {
+    gsap.to(imageCharacter.value, {
         duration: 0.5,
         rotateY: (10 * positionMultiplicator) + 'deg',
         rotateX: `0deg`,
         scale: 1,
-        translateZ: '2rem',
-        translateY: '1rem',
-        translateX: '1rem',
-        filter: 'drop-shadow(' + (-4 * positionMultiplicator) + 'rem 4rem 2rem rgba(0, 0, 0, 0.5))',
+        translateZ: 2 * imageOffsetMultiplicator + 'rem',
+        translateY: 1 * imageOffsetMultiplicator + 'rem',
+        translateX: 1 * imageOffsetMultiplicator + 'rem',
+        filter: 'drop-shadow(' + 4 * -1 * imageOffsetMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
     });
     gsap.to(imageContainer.value, {
         duration: 0.5,
@@ -149,7 +151,7 @@ const onMouseLeave = () => {
         rotateX: `0deg`,
         scale: 1,
         transform: `translateZ(0)`,
-        boxShadow: (-1 * positionMultiplicator) + 'rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset',
+        boxShadow: -2 * imageOffsetMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + 4 * imageOffsetMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
     });
 };
 
@@ -173,10 +175,10 @@ const imageCardAppear = () => {
                         rotateY: (10 * positionMultiplicator) + 'deg',
                         rotateX: `0deg`,
                         scale: 1,
-                        translateZ: '2rem',
-                        translateY: '1rem',
-                        translateX: '1rem',
-                        filter: 'drop-shadow(' + (-4 * positionMultiplicator) + 'rem 4rem 2rem rgba(0, 0, 0, 0.5))',
+                        translateZ: 2 * imageOffsetMultiplicator + 'rem',
+                        translateY: 1 * imageOffsetMultiplicator + 'rem',
+                        translateX: 1 * imageOffsetMultiplicator + 'rem',
+                        filter: 'drop-shadow(' + 4 * -1 * imageOffsetMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 2rem rgba(0, 0, 0, 0.5))',
                     });
                     gsap.to(imageContainer.value, {
                         duration: 0.5,
@@ -184,7 +186,7 @@ const imageCardAppear = () => {
                         rotateX: `0deg`,
                         scale: 1,
                         transform: `translateZ(0)`,
-                        boxShadow: (-1 * positionMultiplicator) + 'rem 1rem 2rem rgba(0, 0, 0, 0.25), 4rem 4rem 5rem rgba(255, 255, 255, 0.2) inset, -4rem -4rem 5rem rgba(0, 0, 0, 0.2) inset',
+                        boxShadow: -2 * imageOffsetMultiplicator + 'rem ' + 2 * imageOffsetMultiplicator + 'rem ' + 1 * imageOffsetMultiplicator + 'rem rgba(0, 0, 0, 0.25), ' + 4 * imageOffsetMultiplicator + 'rem ' + 4 * imageOffsetMultiplicator + 'rem 5rem rgba(255, 255, 255, 0.2) inset, ' + -4 * imageOffsetMultiplicator + 'rem ' + -4 * imageOffsetMultiplicator + 'rem 5rem rgba(0, 0, 0, 0.2) inset',
                     });
                 },
             });
