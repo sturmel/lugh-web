@@ -40,7 +40,7 @@
             </div>
             <div class="flex flex-col w-1/4 min-w-80 p-4 m-auto mt-0">
                 <h3 class="text-xl font-semibold m-auto mt-0 mb-2 ml-0">Réseaux sociaux</h3>
-                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+                <a href="https://www.linkedin.com/in/s%C3%A9bastien-sturmel-05582917b/"
                     target="_blank" class="group flex m-auto ml-0 mt-0 mb-2">
                     <Icon name="mdi:linkedin"
                         class=" text-4xl  text-white pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />

@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div class="m-auto mr-10 hidden md:flex">
-                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+                <a href="https://www.linkedin.com/in/s%C3%A9bastien-sturmel-05582917b/"
                     target="_blank" class="group flex m-auto ml-0 mr-5">
                     <Icon name="mdi:linkedin"
                         class=" text-4xl  text-french-gray-500 pointer-events-none group-hover:text-tangerine-500 transition-all duration-300 ease-in-out" />
