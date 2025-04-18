@@ -167,10 +167,5 @@ const sendMail = async () => {
 
 onMounted(() => {
     sectionVisibilityTrigger();
-    gsap.set(".contact__form", {
-        opacity: 0,
-        translateY: "25%",
-        scale: 1.05,
-    });
 });
 </script>

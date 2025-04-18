@@ -67,11 +67,11 @@
     { name: "keywords", content: "développement application mobile, application ios, application android, développement mobile sur mesure" },
     { property: "og:title", content: "Lugh Web - Développement d'applications mobiles sur mesure" },
     { property: "og:description", content: "Conception et développement d'applications mobiles intuitives et performantes pour iOS et Android." },
-    { property: "og:image", content: websiteUrl + "/images/pages/mobile.webp" },
+    { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Développement d'applications mobiles sur mesure" },
     { property: "twitter:description", content: "Conception et développement d'applications mobiles intuitives et performantes pour iOS et Android." },
-    { property: "twitter:image", content: websiteUrl + "/images/pages/mobile.webp" }
+    { property: "twitter:image", content: websiteUrl + "/images/lugh-web__link.jpg" }
   ],
   link: [{ rel: "canonical", href: websiteUrl + "/services/mobile" }],
 });

@@ -67,11 +67,11 @@ useHead({
     { name: "keywords", content: "création site web, site vitrine, site e-commerce, développement web sur mesure" },
     { property: "og:title", content: "Lugh Web - Création de sites web sur mesure" },
     { property: "og:description", content: "Création de sites web vitrines et e-commerce sur mesure pour une présence en ligne professionnelle et performante." },
-    { property: "og:image", content: websiteUrl + "/images/pages/webSite.webp" },
+    { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Création de sites web sur mesure" },
     { property: "twitter:description", content: "Création de sites web vitrines et e-commerce sur mesure pour une présence en ligne professionnelle et performante." },
-    { property: "twitter:image", content: websiteUrl + "/images/pages/webSite.webp" }
+    { property: "twitter:image", content: websiteUrl + "/images/lugh-web__link.jpg" }
   ],
   link: [{ rel: "canonical", href: websiteUrl + "/services/website" }],
 });

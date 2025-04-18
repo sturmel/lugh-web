@@ -43,11 +43,11 @@ useHead({
     { name: "keywords", content: "développement web, développement mobile, audit de sécurité, automatisation de processus" },
     { property: "og:title", content: "Lugh Web - Développement web et mobile sur mesure" },
     { property: "og:description", content: "Développement web et mobile sur mesure, audit de sécurité, automatisation de processus." },
-    { property: "og:image", content: websiteUrl + "/images/pages/home/heroshot.webp" },
+    { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Développement web et mobile sur mesure" },
     { property: "twitter:description", content: "Développement web et mobile sur mesure, audit de sécurité, automatisation de processus." },
-    { property: "twitter:image", content: websiteUrl + "/images/pages/home/heroshot.webp" }
+    { property: "twitter:image", content: websiteUrl + "/images/lugh-web__link.jpg" }
   ],
   link: [{ rel: "canonical", href: websiteUrl }],
 });

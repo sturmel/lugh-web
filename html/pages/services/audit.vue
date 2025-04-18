@@ -67,11 +67,11 @@ useHead({
     { name: "keywords", content: "audit sécurité, sécurité informatique, protection données, analyse vulnérabilités" },
     { property: "og:title", content: "Lugh Web - Audit de sécurité de votre système d'information" },
     { property: "og:description", content: "Analyse approfondie de votre système d'information pour identifier les failles de sécurité et garantir la protection de vos données sensibles." },
-    { property: "og:image", content: websiteUrl + "/images/pages/audit.webp" },
+    { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Audit de sécurité de votre système d'information" },
     { property: "twitter:description", content: "Analyse approfondie de votre système d'information pour identifier les failles de sécurité et garantir la protection de vos données sensibles." },
-    { property: "twitter:image", content: websiteUrl + "/images/pages/audit.webp" }
+    { property: "twitter:image", content: websiteUrl + "/images/lugh-web__link.jpg" }
   ],
   link: [{ rel: "canonical", href: websiteUrl + "/services/audit" }],
 });

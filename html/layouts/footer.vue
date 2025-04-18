@@ -28,13 +28,13 @@
             </div>
             <div class="flex flex-col w-1/4 min-w-80 p-4 m-auto mt-0">
                 <h3 class="text-xl font-semibold m-auto mt-0 mb-2 ml-0">Legal</h3>
-                <a href="/services/website" class="relative m-auto ml-0 mt-0 mb-2 text-white transition duration-300 ease-in-out hover:text-tangerine-500">
+                <a href="/legal_information" class="relative m-auto ml-0 mt-0 mb-2 text-white transition duration-300 ease-in-out hover:text-tangerine-500">
                     Mentions légales
                 </a>
-                <a href="/services/mobile" class="relative m-auto ml-0 mt-0 mb-2 text-white transition duration-300 ease-in-out hover:text-tangerine-500">
+                <a href="/cgv" class="relative m-auto ml-0 mt-0 mb-2 text-white transition duration-300 ease-in-out hover:text-tangerine-500">
                     CGV
                 </a>
-                <a href="/services/tool" class="relative m-auto ml-0 mt-0 mb-2 text-white transition duration-300 ease-in-out hover:text-tangerine-500">
+                <a href="/legal_information" class="relative m-auto ml-0 mt-0 mb-2 text-white transition duration-300 ease-in-out hover:text-tangerine-500">
                     Politique de confidentialité
                 </a>
             </div>

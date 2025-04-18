@@ -66,11 +66,11 @@
     { name: "keywords", content: "automatisation, intégration, flux de travail, efficacité, gain de temps" },
     { property: "og:title", content: "Lugh Web - Intégration de solutions d'automatisation sur mesure" },
     { property: "og:description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },
-    { property: "og:image", content: websiteUrl + "/images/pages/automatisation.webp" },
+    { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Intégration de solutions d'automatisation sur mesure" },
     { property: "twitter:description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },
-    { property: "twitter:image", content: websiteUrl + "/images/pages/automatisation.webp" }
+    { property: "twitter:image", content: websiteUrl + "/images/lugh-web__link.jpg" }
   ],
   link: [{ rel: "canonical", href: websiteUrl + "/services/automatisation" }],
 });
