@@ -68,6 +68,8 @@ useHead({
     { property: "og:title", content: "Lugh Web - Audit de sécurité de votre système d'information" },
     { property: "og:description", content: "Analyse approfondie de votre système d'information pour identifier les failles de sécurité et garantir la protection de vos données sensibles." },
     { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
+    { property: "og:url", content: websiteUrl + "/services/audit" }, 
+    { property: "og:type", content: "website" }, 
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Audit de sécurité de votre système d'information" },
     { property: "twitter:description", content: "Analyse approfondie de votre système d'information pour identifier les failles de sécurité et garantir la protection de vos données sensibles." },

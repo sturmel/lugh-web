@@ -497,12 +497,14 @@ useHead({
         { property: "og:title", content: "Lugh Web - Développement web et mobile sur mesure" },
         { property: "og:description", content: "Développement web et mobile sur mesure, audit de sécurité, automatisation de processus." },
         { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
+        { property: "og:url", content: websiteUrl + "/cgv" }, 
+        { property: "og:type", content: "website" }, 
         { property: "twitter:card", content: "summary_large_image" },
         { property: "twitter:title", content: "Lugh Web - Développement web et mobile sur mesure" },
         { property: "twitter:description", content: "Développement web et mobile sur mesure, audit de sécurité, automatisation de processus." },
         { property: "twitter:image", content: websiteUrl + "/images/lugh-web__link.jpg" }
     ],
-    link: [{ rel: "canonical", href: websiteUrl + "/legal_information" }],
+    link: [{ rel: "canonical", href: websiteUrl + "/cgv" }],
 });
 const scrollToSection = (targetId: string) => {
     const targetElement = document.getElementById(targetId);

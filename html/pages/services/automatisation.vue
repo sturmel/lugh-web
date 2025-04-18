@@ -67,6 +67,8 @@
     { property: "og:title", content: "Lugh Web - Intégration de solutions d'automatisation sur mesure" },
     { property: "og:description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },
     { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
+    { property: "og:url", content: websiteUrl + "/services/automatisation" }, 
+    { property: "og:type", content: "website" }, 
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Intégration de solutions d'automatisation sur mesure" },
     { property: "twitter:description", content: "Automatisation de tâches répétitives pour gagner du temps, réduire les erreurs et optimiser votre système d'information." },

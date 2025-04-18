@@ -68,6 +68,8 @@ useHead({
     { property: "og:title", content: "Lugh Web - Développement d'outils métiers personnalisés" },
     { property: "og:description", content: "Développement d'outils métiers sur mesure pour optimiser vos processus internes et faciliter la gestion de vos données." },
     { property: "og:image", content: websiteUrl + "/images/lugh-web__link.jpg" },
+    { property: "og:url", content: websiteUrl + "/services/tool" }, 
+    { property: "og:type", content: "website" }, 
     { property: "twitter:card", content: "summary_large_image" },
     { property: "twitter:title", content: "Lugh Web - Développement d'outils métiers personnalisés" },
     { property: "twitter:description", content: "Développement d'outils métiers sur mesure pour optimiser vos processus internes et faciliter la gestion de vos données." },
