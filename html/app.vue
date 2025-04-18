@@ -21,6 +21,7 @@
       <Meta http-equiv="X-Content-Type-Options" content="nosniff" />
       <Meta name="referrer-policy" content="strict-origin-when-cross-origin" />
       <Meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), display-capture=()" />
+      
 
     </Head>
     <main class="overflow-hidden">

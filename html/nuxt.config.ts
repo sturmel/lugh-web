@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     'nuxt-particles',
     '@nuxtjs/sitemap',
     '@nuxt/image',
+    'nuxt-gtag',
   ],
   css: ['~/assets/style/main.css'],
   vite: {
