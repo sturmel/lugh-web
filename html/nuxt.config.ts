@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-gtag',
   ],
+  gtag: {
+    id: process.env.GOOGLE_TAG
+  },
   css: ['~/assets/style/main.css'],
   vite: {
     plugins: [
